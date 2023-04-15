@@ -24,11 +24,11 @@ const renderTrendingMovies = (response) => {
         return `
         <li>
         <div class="movie-card">
-            <img class="movie-card_img" src="${imgUrl}${poster_path}" loading="lazy" 
+            <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
-            <div class="movie-card_desc">
-            <p class="movie-card_title">${title}</p>
-            <p class="movie-card_info"> Drama, Action | ${realeseYear}</p>                     
+            <div class="movie-card__desc">
+            <p class="movie-card__title">${title}</p>
+            <p class="movie-card__info"> Drama, Action | ${realeseYear}</p>                     
             </div>
         </div>
         </li>

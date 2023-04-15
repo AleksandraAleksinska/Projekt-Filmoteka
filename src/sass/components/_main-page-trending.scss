@@ -17,24 +17,24 @@
     margin-bottom: 20px;
     display: block;
 
-    &_img {
+    &__img {
         width: 280px;
         height: 402px;
         display:block;        
     }
 
-    &_desc {
+    &__desc {
         font-size: 12px;
         font-weight: 500;
         line-height: 14px;
     }
 
-    &_title {
+    &__title {
         text-transform: uppercase;
         margin-top: 10px;
         margin-bottom: 2px;
         }
-    &_info {
+    &__info {
         margin: 0px;
         color: $color-second;
     }
