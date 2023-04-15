@@ -16,18 +16,18 @@ const getTrendingMovies = async () => {
 }
 
 const renderTrendingMovies = (response) => {
-    const movies = response.results;    
-    const markup = (movies)
-    .map(({backdrop_path, title, release_date }) => {
+    const movies = response.results; 
+    const imgUrl = 'https://image.tmdb.org/t/p/w500';   
+    const markup = (movies)    
+    .map(({poster_path, title, release_date }) => {
         return `
         <div class="movie-card">
-            <img src="${backdrop_path}" loading="lazy" 
-            width=360
-            height=240/>
-            <div class="info">
-            <span class="info-title">${title}</span>
-            <span class="info-category">category ???</span>
-            <span class="info-date">${release_date} </span>            
+            <img src="${imgUrl}${poster_path}" loading="lazy" 
+            width=336
+            height=455/>
+            <div class="movie-card_desc">
+            <p class="movie-card_title">${title}</p>
+            <p class="movie-card_info"> category ??? | ${release_date}</p>                     
             </div>
         </div>
         `
