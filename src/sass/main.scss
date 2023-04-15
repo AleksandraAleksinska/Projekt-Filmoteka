@@ -1,10 +1,6 @@
-/*
- * Główny plik dla stylów.
- * Wszystkie partials podłączamy tutaj.
- */
-
-// Style dla pliku z przykładem HTML fragmentu
 @import './components/example';
 @import './utils/container';
 @import './utils/colors';
 @import './components/main-page-trending';
+@import './components/modal';
+@import './utils/button';
