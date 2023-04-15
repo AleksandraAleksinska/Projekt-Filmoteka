@@ -1,11 +1,14 @@
-.movie-list{
+.movie-draft{
     background-color: rgb(233, 216, 221);
+}
+
+.movie-list{    
     list-style: none;
     display:flex;
     flex-direction: column;
     margin: 0px;
-    justify-content: center;
-   
+    padding: 20px 0px 0px;
+    justify-content: center;   
 }
 
 .movie-card {
@@ -17,8 +20,7 @@
     &_img {
         width: 280px;
         height: 402px;
-        display:block;
-        
+        display:block;        
     }
 
     &_desc {
@@ -35,6 +37,5 @@
     &_info {
         margin: 0px;
         color: $color-second;
-
     }
 }

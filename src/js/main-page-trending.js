@@ -17,18 +17,21 @@ const getTrendingMovies = async () => {
 
 const renderTrendingMovies = (response) => {
     const movies = response.results; 
-    const imgUrl = 'https://image.tmdb.org/t/p/w500';   
+    const imgUrl = 'https://image.tmdb.org/t/p/w500';  
     const markup = (movies)    
-    .map(({poster_path, title, release_date }) => {
+    .map(({poster_path, title, release_date}) => {
+        const realeseYear = release_date.slice(0, 4);
         return `
+        <li>
         <div class="movie-card">
             <img class="movie-card_img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
             <div class="movie-card_desc">
             <p class="movie-card_title">${title}</p>
-            <p class="movie-card_info"> Drama, Action | ${release_date}</p>                     
+            <p class="movie-card_info"> Drama, Action | ${realeseYear}</p>                     
             </div>
         </div>
+        </li>
         `
     })
     .join('');
