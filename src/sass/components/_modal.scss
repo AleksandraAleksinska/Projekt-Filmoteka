@@ -1,0 +1,15 @@
+.modal {
+  opacity: 0;
+  margin: 20px 20px 38px 20px;
+  background-color: rgb(69, 69, 223);
+  height: 500px;
+  position: relative;
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+  &__buttons {
+    display: block;
+  }
+}
