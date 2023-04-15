@@ -1,0 +1,45 @@
+
+const trendingMoviesDOM = document.querySelector('.movie-list');
+
+const getTrendingMovies = async () => {
+    const APIkey = 'ac3e035161883f7175e5be9954a0068d';
+    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIkey}`;
+    try{
+        const response = await fetch(url);
+        const responseJSON = await response.json();
+        console.log(responseJSON);
+        return responseJSON;
+        
+    } catch (error) {
+        console.log(error.message)
+    }     
+}
+
+const renderTrendingMovies = (response) => {
+    const movies = response.results;    
+    const markup = (movies)
+    .map(({backdrop_path, title, release_date }) => {
+        return `
+        <div class="movie-card">
+            <img src="${backdrop_path}" loading="lazy" 
+            width=360
+            height=240/>
+            <div class="info">
+            <span class="info-title">${title}</span>
+            <span class="info-category">category ???</span>
+            <span class="info-date">${release_date} </span>            
+            </div>
+        </div>
+        `
+    })
+    .join('');
+    trendingMoviesDOM.innerHTML=markup;
+
+}
+
+getTrendingMovies()
+.then((movies) => renderTrendingMovies(movies))
+.catch((error) => console.log(error));
+
+const trendingMovies = {getTrendingMovies, renderTrendingMovies};
+export default trendingMovies;
