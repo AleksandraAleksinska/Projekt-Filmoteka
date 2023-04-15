@@ -22,12 +22,11 @@ const renderTrendingMovies = (response) => {
     .map(({poster_path, title, release_date }) => {
         return `
         <div class="movie-card">
-            <img src="${imgUrl}${poster_path}" loading="lazy" 
-            width=336
-            height=455/>
+            <img class="movie-card_img" src="${imgUrl}${poster_path}" loading="lazy" 
+            />
             <div class="movie-card_desc">
             <p class="movie-card_title">${title}</p>
-            <p class="movie-card_info"> category ??? | ${release_date}</p>                     
+            <p class="movie-card_info"> Drama, Action | ${release_date}</p>                     
             </div>
         </div>
         `
