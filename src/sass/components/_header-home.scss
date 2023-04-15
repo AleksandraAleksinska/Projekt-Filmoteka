@@ -1,0 +1,60 @@
+.header-home {
+    // background-color: black;
+    background-image: url(../images/header-background/home-mobile@1x.png);
+background-repeat: no-repeat;
+height: 14.375rem;
+
+// @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+//         background-image: url(../images/header-background/home-mobile@2x.png);
+//       }
+ 
+&__container {
+   width: 17.5rem;
+      height: 9.125rem;  
+      padding: 2.5rem 1.25rem 2.75rem ;
+}
+
+&__Filmoteka {
+    display: none;
+}
+
+&__upperArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 3.375rem;
+}
+
+&__logo {
+//  width: 8.9375rem;   
+}
+
+&__tabArea {
+    display: flex;
+    font-size: 0.75rem;
+    line-height: 1.17;
+    text-decoration: none;
+}
+
+&__link {
+    text-decoration: none;
+    color: white;
+&--library  {
+    padding-left: 2.4375rem;
+}
+}
+
+&__searchArea {
+    padding-bottom: 5.75rem;
+}
+
+&__input {
+    width:100%;
+    background: transparent;
+    border: none;
+    color: white;
+     outline: none;
+}
+
+
+}
