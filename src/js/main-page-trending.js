@@ -16,8 +16,7 @@ const getTrendingMovies = async () => {
 }
 
 const renderTrendingMovies = (response) => {
-    const movies = response.results; 
-    const imgUrl = 'https://image.tmdb.org/t/p/w500';  
+    const movies = response.results;  
     const markup = (movies)    
     .map(({poster_path, title, release_date}) => {
         const realeseYear = release_date.slice(0, 4);
