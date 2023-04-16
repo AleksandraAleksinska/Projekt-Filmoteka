@@ -1,0 +1,60 @@
+.header-home {
+    // background-color: black;
+    background-image: url(../images/header-background/home-mobile@1x.png);
+background-repeat: no-repeat;
+height: 230px;
+
+// @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+//         background-image: url(../images/header-background/home-mobile@2x.png);
+//       }
+ 
+&__container {
+   width: 280px;
+      height: 146px;  
+      padding: 40px 20px 44px ;
+}
+
+&__Filmoteka {
+    display: none;
+}
+
+&__upperArea {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 54px;
+}
+
+&__logo {
+//  width: 8.9375px;   
+}
+
+&__tabArea {
+    display: flex;
+    font-size: 12px;
+    line-height: 1.17;
+    text-decoration: none;
+}
+
+&__link {
+    text-decoration: none;
+    color: white;
+&--library  {
+    padding-left: 39px;
+}
+}
+
+&__searchArea {
+    padding-bottom: 92px;
+}
+
+&__input {
+    width:100%;
+    background: transparent;
+    border: none;
+    color: white;
+     outline: none;
+}
+
+
+}
