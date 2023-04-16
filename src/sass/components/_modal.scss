@@ -1,15 +1,21 @@
 .modal {
-  opacity: 0;
+  opacity: 1;
   margin: 20px 20px 38px 20px;
-  background-color: rgb(69, 69, 223);
+  background-color: rgb(190, 190, 211);
   height: 500px;
   position: relative;
   &__close {
     position: absolute;
     top: 8px;
     right: 8px;
+    stroke: black;
   }
   &__buttons {
-    display: block;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    @media screen and (min-width: 768px) {
+      gap: 15px;
+    }
   }
 }
