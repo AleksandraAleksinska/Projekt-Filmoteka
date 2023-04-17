@@ -1,4 +1,5 @@
 import '../sass/main.scss';
 
-import trendingMovies from './main-page-trending';
+import '../js/local-storage__queue';
 
+import trendingMovies from './main-page-trending';
