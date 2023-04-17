@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 230px;
-
+  padding: 40px 20px 92px 20px;
   // @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   //         background-image: url(../images/header-background/home-mobile@2x.png);
   //       }
@@ -11,39 +11,40 @@
     background-image: url(../images/header-background/library-mobile.png);
   }
 
-  &__container {
-    width: 280px;
-    height: 146px;
-    padding: 40px 0px 44px;
-  }
+  // &__wrapper {
+  //   width: 280px;
+  //   height: 146px;
+  //   padding: 40px 0px 44px;
+  // }
 
-  &__Filmoteka {
+  &__filmoteka {
     display: none;
   }
 
-  &__upperArea {
+  &__upper-area {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 54px;
+    // padding-bottom: 54px;
+    margin-bottom: 54px;
   }
 
   &__logo {
     //  width: 8.9375px;
   }
 
-  &__tabArea {
+  &__tab-area {
     text-transform: uppercase;
     display: flex;
     justify-content: space-between;
     line-height: 1.17;
     font-weight: 500;
     font-size: 12px;
-    align-items: center;
+    // align-items: center;
     text-align: center;
     width: 143px;
-    text-decoration: none;
+    // text-decoration: none;
   }
 
   &__item {
@@ -68,7 +69,7 @@
     }
   }
 
-  &__searchArea {
+  &__search-area {
     padding-bottom: 92px;
     display: flex;
     justify-content: center;
@@ -77,6 +78,7 @@
 
   &__form {
     position: absolute;
+    width: 280px;
 
     &::after {
       position: absolute;
@@ -89,7 +91,7 @@
     }
   }
 
-  &__inputArea {
+  &__input-area {
     display: flex;
     justify-content: space-between;
   }
@@ -111,7 +113,7 @@
     cursor: pointer;
   }
 
-  &__libBtnArea {
+  &__libBtn-area {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,7 +140,7 @@
     }
   }
 
-  &__libBtn.btnWatched {
+  &__libBtn.btn-watched {
     margin-right: 20px;
   }
 }
