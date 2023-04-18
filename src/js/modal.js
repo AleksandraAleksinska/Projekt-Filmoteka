@@ -2,8 +2,9 @@ const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async () => {
     try {
-        const APIkey = 'ac3e035161883f7175e5be9954a0068d';
-        const selectedMovieFetch = await fetch(`https://api.themoviedb.org/3/movie/41205?api_key=${APIkey}&language=en-US`);
+        const id = 76600;
+        const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
+        const selectedMovieFetch = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
         const selectedMovieData = await selectedMovieFetch.json();
         console.log(selectedMovieData);
         return selectedMovieData;      
@@ -13,30 +14,29 @@ const getSelectedMovieDetails = async () => {
 }
 
 const renderSelectedMovieDetails = (movie) => {
-    console.log(movie.genres.values);
     const imgUrl = 'https://image.tmdb.org/t/p/w500';
     const selectedMovie =
         `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
-        <h2 class="modal__title">${movie.title}</h2>
-        <div class="modal__info">
-            <ul class="modal__info-keys">
-                <li class="modal__info-key">Vote / Votes</li>
-                <li class="modal__info-key">Popularity</li>
-                <li class="modal__info-key">Original Title</li>
-                <li class="modal__info-key">Genre</li>
+        <h2 class="modal__title"> ${movie.title}</>
+        <div class="modal__info-wrapper">
+            <ul class="modal__info">
+                <li class="modal__info modal__info--key">Vote / Votes</li>
+                <li class="modal__info modal__info--key">Popularity</li>
+                <li class="modal__info modal__info--key">Original Title</li>
+                <li class="modal__info modal__info--key">Genre</li>
             </ul>
-            <ul class="modal__info-values">
-                <li class="modal__info-value">${movie.vote_average} / ${movie.vote_count}</li>
-                <li class="modal__info-value">${movie.popularity}</li>
-                <li class="modal__info-value">${movie.original_title}</li>
-                <li class="modal__info-value">${movie.genres.values}</li>
+            <ul class="modal__info">
+                <li class="modal__info modal__info--number">${movie.vote_average.toFixed(1)} / ${movie.vote_count}</li>
+                <li class="modal__info modal__info--number">${movie.popularity.toFixed(1)}</li>
+                <li class="modal__info modal__info--value">${movie.original_title}</li>
+                <li class="modal__info modal__info--value">${movie.genres.map(genre => genre.name).join(', ')}</li>
             </ul>
-            <div class="modal__overview-wrapper">
-                <p class="modal__about">about</p>
-                <p class="modal__overview">${movie.overview}</p>
-            </div>
+        </div>
+        <div class="modal__overview">
+            <p class="modal__overview--about">about</p>
+            <p>${movie.overview}</p>
         </div>`
-    
+
     movieCard.innerHTML = selectedMovie;
 }
 
