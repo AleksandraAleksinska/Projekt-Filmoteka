@@ -1,4 +1,8 @@
 .button {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  text-align: center;
   text-transform: uppercase;
   background-color: transparent;
   border-radius: 5px;
@@ -9,8 +13,10 @@
     color: $color-third;
     background-color: $color-second;
     border: none;
+    width: 110px;
   }
   &--queue {
     border: 1px solid black;
+    width: 110px;
   }
 }
