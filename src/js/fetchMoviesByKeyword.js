@@ -23,7 +23,7 @@ getMoviesbyKeyword()
   .then(data => console.log(data.results))
   .catch(({ message }) => console.log(message));
 
-function  handleSubmitKeyword (e) {
+function handleSubmitKeyword(e) {
   e.preventDefault();
   const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
   keyword = e.currentTarget.name.value.trim();
@@ -34,7 +34,6 @@ function  handleSubmitKeyword (e) {
       renderMoviesList(data);
     })
     .catch(({ message }) => console.log(message));
-
 }
 
 const renderMoviesList = data => {
@@ -55,6 +54,6 @@ const renderMoviesList = data => {
         `,
     )
     .join('');
- 
+
   gallery.insertAdjacentHTML('beforeend', markup);
 };
