@@ -1,5 +1,10 @@
+// import getGenres from "./genres";
 
+import genres from "./genres";
+console.log(genres);
 const trendingMoviesDOM = document.querySelector('.movie-list');
+
+
 
 const getTrendingMovies = async () => {
     const APIkey = 'ac3e035161883f7175e5be9954a0068d';
@@ -17,10 +22,31 @@ const getTrendingMovies = async () => {
 
 const renderTrendingMovies = (response) => {
     const movies = response.results; 
-    const imgUrl = 'https://image.tmdb.org/t/p/w500';  
-    const markup = (movies)    
-    .map(({poster_path, title, release_date}) => {
+    console.log(movies);
+    const imgUrl = 'https://image.tmdb.org/t/p/w500'; 
+   
+    const markup = (movies)   
+    .map(({poster_path, title, release_date, genre_ids}) => {
         const realeseYear = release_date.slice(0, 4);
+        
+        // const movieGenres = (genres).map((genre) => {
+        //     if (genre_ids[0] ===genre.id) {
+        //     console.log(genre.id);
+        //     return genre.name;
+                
+        //     }
+        // })
+
+        const movieGenres = genres.forEach((genre) => {
+            let genresArray = [];
+            if(genre_ids.includes(genre.id) ) {
+                genresArray.push(genre.name);
+                
+            }
+            console.log(genresArray);
+            return genresArray;
+        })
+        
         return `
         <li>
         <div class="movie-card">
@@ -28,7 +54,7 @@ const renderTrendingMovies = (response) => {
             />
             <div class="movie-card__desc">
             <p class="movie-card__title">${title}</p>
-            <p class="movie-card__info"> Drama, Action | ${realeseYear}</p>                     
+            <p class="movie-card__info"> ${movieGenres} | ${realeseYear}</p>                     
             </div>
         </div>
         </li>
