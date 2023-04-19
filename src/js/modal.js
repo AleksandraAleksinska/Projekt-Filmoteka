@@ -26,7 +26,7 @@ const renderSelectedMovieDetails = (movie) => {
                 <li class="modal__info modal__info--key">Genre</li>
             </ul>
             <ul class="modal__info">
-                <li class="modal__info modal__info--number">${movie.vote_average.toFixed(1)} / ${movie.vote_count}</li>
+                <li class="modal__info modal__info--number"><span class="rating-frame">${movie.vote_average.toFixed(1)}</span> / <span class="rating-frame rating-frame--gray">${movie.vote_count}</span></li>
                 <li class="modal__info modal__info--number">${movie.popularity.toFixed(1)}</li>
                 <li class="modal__info modal__info--value">${movie.original_title}</li>
                 <li class="modal__info modal__info--value">${movie.genres.map(genre => genre.name).join(', ')}</li>
@@ -42,7 +42,7 @@ const renderSelectedMovieDetails = (movie) => {
 
 getSelectedMovieDetails()
     .then((movie) => renderSelectedMovieDetails(movie))
-    .catch((err) => console.log(err));
+    .catch((error) => console.log(error));
 
 const SelectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
 export default SelectedMovie;
