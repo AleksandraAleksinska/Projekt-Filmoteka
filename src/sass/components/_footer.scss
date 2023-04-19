@@ -1,3 +1,40 @@
+footer {
+    width: 320px;
+    height: 100px;
+}
+.footer__container {
+    padding-block: 28px 29px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #545454;
+    background: #F7F7F7;
+    font-size: 14px;
+    font-family: 'Roboto';
+    font-weight: 400;
+}
+
+.footer__copyright {
+    margin-bottom: 0;
+}
+.footer__second-paragraph {
+    margin-top: 0;
+    padding-top: 9.9px;
+
+}
+
 .footer__icon {
     width: 14px;
+    height: 12.75px;
+    margin-inline: 10px;
+
 }
+
+.footer__link {
+    text-decoration-line: underline;
+}
+
+
+
+
+
