@@ -1,19 +1,16 @@
 .header {
   background-image: url(../images/header-background/home-mobile.png);
   background-repeat: no-repeat;
+  width: 100%;
   background-size: cover;
   height: 230px;
 
-  // @media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
-  //         background-image: url(../images/header-background/home-mobile@2x.png);
-  //       }
   &--altbackground {
     background-image: url(../images/header-background/library-mobile.png);
   }
 
   &__wrapper {
-    //  40px 20px 92px 20px;
-    padding: 40px 0px 92px;
+    padding: 40px 0px 0px;
   }
 
   &__filmoteka {
@@ -25,14 +22,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    margin-bottom: 54px;
   }
 
   &__logo {
-    //    display: flex;
-    //    gap: 10px;
-    //  align-items: center;
   }
 
   &__tab-area {
@@ -42,10 +34,8 @@
     line-height: 1.17;
     font-weight: 500;
     font-size: 12px;
-    // align-items: center;
     text-align: center;
     width: 143px;
-    // text-decoration: none;
   }
 
   &__item {
@@ -63,15 +53,13 @@
     }
   }
   &__link {
-    //  text-decoration: none;
     color: white;
     &--library {
-      // margin-left: 39px;
     }
   }
 
   &__search-area {
-    padding-bottom: 92px;
+    padding-top: 54px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,7 +67,7 @@
 
   &__form {
     position: absolute;
-    width: 280px;
+    // width: 280px;
 
     &::after {
       position: absolute;
@@ -95,6 +83,7 @@
   &__input-area {
     display: flex;
     justify-content: space-between;
+    width: 280px;
   }
 
   &__input {
@@ -152,6 +141,7 @@
 
 @media screen and (min-width: 768px) {
   .header {
+    height: 216px;
     background-image: url(../images/header-background/home-tablet.png);
 
     &--altbackground {
@@ -159,7 +149,6 @@
     }
 
     &__wrapper {
-      // padding: 40px 32px 81px;
     }
     &__filmoteka {
       display: inline;
@@ -170,7 +159,14 @@
       padding-left: 8px;
     }
     &__input {
+      // width: 336px;
+    }
+
+    &__input-area {
       width: 336px;
+    }
+    &__search-area {
+      padding-top: 40px;
     }
   }
 }
@@ -182,6 +178,9 @@
       background-image: url(../images/header-background/library-desktop.png);
     }
     &__input {
+    }
+
+    &__input-area {
       width: 394px;
     }
   }
