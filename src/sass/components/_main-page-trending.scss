@@ -1,17 +1,21 @@
+
+
+
+
 .movie-list{    
     list-style: none;
     display:flex;
     flex-direction: column;
     gap: 20px;
     margin: 0px;
-    padding: 0px;
+    padding: 20px 0px 40px;
     justify-content: center;   
 
     @media screen and (min-width: 768px) {
         flex-direction: row;
         flex-wrap: wrap;
         gap: 32px;
-        padding-top: 60px;
+        padding-block: 60px;
         
       }
     
@@ -79,3 +83,4 @@
         color: $color-second;
     }
 }
+

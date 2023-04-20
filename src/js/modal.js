@@ -46,7 +46,7 @@ const renderSelectedMovieDetails = (movie) => {
 
 getSelectedMovieDetails()
     .then((movie) => renderSelectedMovieDetails(movie))
-    .catch((err) => console.log(err));
+    .catch((error) => console.log(error));
 
 const SelectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
 export default SelectedMovie;
