@@ -1,10 +1,5 @@
-// NIEDOKOŃCZONE
-
-import trendingMovies from './main-page-trending';
-
 const queueButton = document.querySelector('.button--queue');
 const userQueue = document.querySelector('.btn-queue');
-const { getTrendingMovies, renderTrendingMovies } = trendingMovies;
 
 queueButton.addEventListener('click', () => {
   localStorage.setItem('queueElements', '');
@@ -13,3 +8,11 @@ queueButton.addEventListener('click', () => {
 userQueue.addEventListener('click', () => {
   localStorage.getItem('queueElements');
 });
+
+const addToQueue = async () => {
+  try {
+    // const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
+  } catch (error) {
+    console.log(error.message);
+  }
+};
