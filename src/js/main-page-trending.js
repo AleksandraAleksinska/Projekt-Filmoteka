@@ -39,12 +39,12 @@ const renderTrendingMovies = (response) => {
         console.log(movieGenres);
         return `
         <li>
-        <div class="movie-card">
+        <div class="movie-card card-hover">
             <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
             <div class="movie-card__desc">
             <p class="movie-card__title">${title}</p>
-            <p class="movie-card__info"> ${movieGenres.slice(0, 3)} | ${releaseYear}</p>                     
+            <p class="movie-card__info"> ${(movieGenres.slice(0, 3)).join(', ')} | ${releaseYear}</p>                     
             </div>
         </div>
         </li>
