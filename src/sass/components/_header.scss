@@ -22,6 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 40px;
   }
 
   &__logo {
@@ -39,6 +40,7 @@
   }
 
   &__item {
+    color: white;
     &--focus {
       position: relative;
       &::after {
@@ -49,6 +51,7 @@
         height: 3px;
         background-color: #ff001b;
         width: 100%;
+        
       }
     }
   }
@@ -59,10 +62,11 @@
   }
 
   &__search-area {
-    padding-top: 54px;
+    // padding-top: 54px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 20px;
   }
 
   &__form {
@@ -166,7 +170,7 @@
       width: 336px;
     }
     &__search-area {
-      padding-top: 40px;
+      // padding-top: 40px;
     }
   }
 }
