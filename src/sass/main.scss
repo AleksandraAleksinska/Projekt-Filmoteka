@@ -1,9 +1,11 @@
-
+@import './utils/reset';
 @import './utils/container';
 @import './utils/colors';
-@import './utils/button';
+@import './utils/uppercase';
+@import './components/button';
 @import './components/header';
 @import './components/main-page-trending';
+@import './components/pagination';
 @import './components/modal';
-@import './components/footer'
-
+@import './components/footer';
+@import './utils/movie-card-hover';

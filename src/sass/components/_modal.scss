@@ -1,15 +1,71 @@
 .modal {
-  opacity: 0;
+  opacity: 1;
   margin: 20px 20px 38px 20px;
-  background-color: rgb(69, 69, 223);
-  height: 500px;
+  padding: 48px 20px 40px 20px;
+  background-color: rgb(190, 190, 211);
   position: relative;
   &__close {
     position: absolute;
     top: 8px;
     right: 8px;
+    stroke: black;
   }
-  &__buttons {
+  &__movie {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__img {
+    width: 100%;
     display: block;
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.15;
+    color: black;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    &--key {
+      color: #8c8c8c;
+      white-space: nowrap;
+      min-width: 100px;
+    }
+    &--number {
+      line-height: 1.17;
+    }
+    &--value {
+      color: black;
+    }
+  }
+  &__info-item {
+    display: flex;
+    flex-direction: row;
+  }
+  &__overview {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.67;
+    &--about {
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      line-height: 1.33;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+    @media screen and (min-width: 768px) {
+      gap: 15px;
+    }
   }
 }

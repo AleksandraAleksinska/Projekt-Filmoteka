@@ -1,0 +1,13 @@
+.rating-frame {
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: $color-second;
+  width: 36px;
+  height: 16px;
+  border-radius: 5px;
+  &--gray {
+    color: black;
+    background-color: #f7f7f7;
+  }
+}
