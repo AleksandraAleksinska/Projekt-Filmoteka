@@ -22,7 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
 
   &__logo {
@@ -169,6 +169,13 @@
     &__input-area {
       width: 336px;
     }
+
+    &__upper-area {
+      margin-bottom: 40px;
+    }
+
+
+
     &__search-area {
       // padding-top: 40px;
     }
