@@ -1,7 +1,4 @@
 
-
-
-
 .movie-list{    
     list-style: none;
     display:flex;
@@ -84,3 +81,6 @@
     }
 }
 
+.movie-list:last-child {
+  justify-content: flex-start;
+}
