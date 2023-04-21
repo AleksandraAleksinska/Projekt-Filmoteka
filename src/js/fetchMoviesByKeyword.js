@@ -9,7 +9,7 @@ const qs = s => document.querySelector(s);
 const gallery = qs('.movie-list');
 const form = qs('#header__form');
 
-form.addEventListener('submit', handleSubmitKeyword);
+
 
 async function getMoviesbyKeyword() {
   const response = await fetch(
@@ -23,18 +23,21 @@ getMoviesbyKeyword()
   .then(data => console.log(data.results))
   .catch(({ message }) => console.log(message));
 
-const handleSubmitKeyword = e => {
+const handleSubmitKeyword  = (e) =>  {
+   
   e.preventDefault();
   const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
   keyword = e.currentTarget.name.value.trim();
   gallery.innerHTML = '';
 
-  return getMoviesbyKeyword(keyword)
+  return  getMoviesbyKeyword(keyword)
     .then(data => {
       renderMoviesList(data);
     })
     .catch(({ message }) => console.log(message));
 };
+
+form.addEventListener('submit', handleSubmitKeyword);
 
 const renderMoviesList = data => {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/original';
