@@ -1,6 +1,10 @@
 import getAllGenres from "./genres";
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
+const openModal = document.querySelector('[data-modal-open]');
+import toggleModal from "./toggleModal";
+// openModal.addEventListener('click', toggleModal.open);
+console.log(openModal);
 
 const getTrendingMovies = async () => {
     const APIkey = 'ac3e035161883f7175e5be9954a0068d';
@@ -36,9 +40,8 @@ const renderTrendingMovies = (response) => {
             }            
             return genresArray;
         })
-        console.log(movieGenres);
         return `
-        <li>
+        <li data-modal-open>
         <div class="movie-card card-hover">
             <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />

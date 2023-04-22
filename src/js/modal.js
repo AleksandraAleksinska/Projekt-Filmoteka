@@ -1,4 +1,14 @@
+import toggleModal from "./toggleModal";
+
 const movieCard = document.querySelector('.modal__movie');
+const closeModal = document.querySelector('[data-modal-close]');
+const openModal = document.querySelector('[data-modal-open]');
+const modal = document.querySelector('[data-modal]');
+const backdrop = document.querySelector('.backdrop');
+
+
+// openModal.addEventListener('click', toggleModal.open);
+// closeModal.addEventListener('click', toggleModal.close);
 
 const getSelectedMovieDetails = async () => {
     try {
@@ -17,28 +27,34 @@ const renderSelectedMovieDetails = (movie) => {
     const imgUrl = 'https://image.tmdb.org/t/p/w500';
     const selectedMovie =
         `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
-        <h2 class="modal__title uppercase"> ${movie.title}</h2>
-            <ul class="modal__info">
-                <li class="modal__info-item">
-                    <p class="modal__info--key">Vote / Votes</p>
-                    <p class="modal__info--number">${movie.vote_average.toFixed(1)} / ${movie.vote_count}</p>
+        <div class="modal__wrapper">
+            <h2 class="modal__title uppercase"> ${movie.title}</h2>
+                <ul class="modal__info">
+                    <li class="modal__info-item">
+                        <p class="modal__info-key">Vote / Votes</p>
+                        <p class="modal__info-number">${movie.vote_average.toFixed(1)} / ${movie.vote_count}</p>
                     </li>
-                <li class="modal__info-item">
-                    <p class="modal__info--key">Popularity</p>
-                    <p class="modal__info--number">${movie.popularity.toFixed(1)}</p>
+                    <li class="modal__info-item">
+                        <p class="modal__info-key">Popularity</p>
+                        <p class="modal__info-number">${movie.popularity.toFixed(1)}</p>
                     </li>
-                <li class="modal__info-item">
-                   <p class="modal__info--key">Original Title</p>
-                   <p class="modal__info--value uppercase">${movie.original_title}</p>
+                    <li class="modal__info-item">
+                       <p class="modal__info-key">Original Title</p>
+                       <p class="modal__info-value uppercase">${movie.original_title}</p>
                    </li>
-                <li class="modal__info-item">
-                   <p class="modal__info--key">Genre</p>
-                   <p class="modal__info--value">${movie.genres.map(genre => genre.name).join(', ')}</p>
+                    <li class="modal__info-item">
+                       <p class="modal__info-key">Genre</p>
+                       <p class="modal__info-value">${movie.genres.map(genre => genre.name).slice(0,3).join(', ')}</p>
                    </li>
-            </ul>
-        <div class="modal__overview">
-            <p class="modal__overview--about">about</p>
-            <p>${movie.overview}</p>
+                </ul>
+            <div class="modal__overview">
+                <p class="modal__overview--about">about</p>
+                <p>${movie.overview}</p>
+            </div>
+            <div class="modal__buttons">
+                <button id="add-to-watched" class="button button--accent">add to watched</button>
+                <button id="add-to-queue" class="button button--queue">add to queue</button>
+        </div>
         </div>`
 
     movieCard.innerHTML = selectedMovie;
@@ -48,5 +64,5 @@ getSelectedMovieDetails()
     .then((movie) => renderSelectedMovieDetails(movie))
     .catch((error) => console.log(error));
 
-const SelectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
-export default SelectedMovie;
+const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
+export default selectedMovie;
