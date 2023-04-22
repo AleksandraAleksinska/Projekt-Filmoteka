@@ -9,11 +9,9 @@ const qs = s => document.querySelector(s);
 const gallery = qs('.movie-list');
 const form = qs('#header__form');
 
-
-
 async function getMoviesbyKeyword() {
   const response = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page}&language=en-US`,
   );
   const data = response.json();
   return data;
@@ -23,15 +21,15 @@ getMoviesbyKeyword()
   .then(data => console.log(data.results))
   .catch(({ message }) => console.log(message));
 
-const handleSubmitKeyword  = (e) =>  {
-   
+const handleSubmitKeyword = e => {
   e.preventDefault();
   const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
   keyword = e.currentTarget.name.value.trim();
   gallery.innerHTML = '';
 
-  return  getMoviesbyKeyword(keyword)
+  return getMoviesbyKeyword(keyword)
     .then(data => {
+      //localStorage.setItem("data", JSON.stringify(data));
       renderMoviesList(data);
     })
     .catch(({ message }) => console.log(message));
@@ -57,6 +55,6 @@ const renderMoviesList = data => {
         `,
     )
     .join('');
-
+      
   gallery.insertAdjacentHTML('beforeend', markup);
 };
