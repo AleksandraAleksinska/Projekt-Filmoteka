@@ -1,11 +1,6 @@
 import getAllGenres from "./genres";
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
-const openModal = document.querySelector('[data-modal-open]');
-import toggleModal from "./toggleModal";
-// openModal.addEventListener('click', toggleModal.open);
-console.log(openModal);
-
 const getTrendingMovies = async () => {
     const APIkey = 'ac3e035161883f7175e5be9954a0068d';
     const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIkey}`;
@@ -41,7 +36,7 @@ const renderTrendingMovies = (response) => {
             return genresArray;
         })
         return `
-        <li data-modal-open>
+        <li>
         <div class="movie-card card-hover">
             <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
