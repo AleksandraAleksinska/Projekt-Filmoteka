@@ -1,10 +1,10 @@
-import toggleModal from "./toggleModal";
+// import toggleModal from "./toggleModal";
 
 const movieCard = document.querySelector('.modal__movie');
-const closeModal = document.querySelector('[data-modal-close]');
-const openModal = document.querySelector('[data-modal-open]');
-const modal = document.querySelector('[data-modal]');
-const backdrop = document.querySelector('.backdrop');
+// const closeModal = document.querySelector('[data-modal-close]');
+// const openModal = document.querySelector('[data-modal-open]');
+// const modal = document.querySelector('[data-modal]');
+// const backdrop = document.querySelector('.backdrop');
 
 
 // openModal.addEventListener('click', toggleModal.open);

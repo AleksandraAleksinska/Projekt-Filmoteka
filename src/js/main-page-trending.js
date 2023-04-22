@@ -37,7 +37,7 @@ const renderTrendingMovies = response => {
       console.log(movieGenres);
       return `
         <li>
-        <div class="movie-card card-hover">
+        <div class="movie-card card-hover"data-modal-open>
             <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
             <div class="movie-card__desc">
