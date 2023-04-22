@@ -1,15 +1,15 @@
 import Pagination from 'tui-pagination';
-// import 'tui-pagination/dist/tui-pagination.css';
+import 'tui-pagination/dist/tui-pagination.css';
 import trendingMovies from './main-page-trending';
 
-const VISIBEL_PAGES = 5;
+const VISIBLE_PAGES = 5;
 const ITEM_PER_PAGE = 20;
 
 const setPagination = totalItems => {
   const options = {
     totalItems,
     itemsPerPage: ITEM_PER_PAGE,
-    visiblePages: VISIBEL_PAGES,
+    visiblePages: VISIBLE_PAGES,
     centerAlign: true,
   };
 

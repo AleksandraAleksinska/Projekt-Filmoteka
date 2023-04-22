@@ -1,6 +1,62 @@
-.tui-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
+#pagination {
+  height: 40px;
+  margin-top: 0;
+  margin-bottom: 40px;
+
+  & .tui-page-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    color: #000000;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    transition-property: color, background-color, transform;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover:not(.tui-is-disabled) {
+      color: #ffffff;
+      background-color: $color-second;
+    }
+  }
+
+  & .tui-is-selected {
+    color: #ffffff;
+    background-color: $color-second;
+    pointer-events: none;
+  }
+
+  & .tui-next {
+    background-color: $gray;
+  }
+
+  & .tui-prev {
+    background-color: $gray;
+  }
+
+  & .tui-first,
+  .tui-last,
+  .tui-next-is-ellip,
+  .tui-prev-is-ellip {
+    visibility: hidden;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #pagination {
+    margin-bottom: 60px;
+
+    & .tui-page-btn {
+      width: 40px;
+      height: 40px;
+    }
+    & .tui-first,
+    .tui-last,
+    .tui-next-is-ellip,
+    .tui-prev-is-ellip {
+      visibility: inherit;
+    }
+  }
 }
