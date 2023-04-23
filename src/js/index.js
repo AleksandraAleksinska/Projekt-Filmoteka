@@ -5,3 +5,7 @@ import { getMoviesbyKeyword } from './fetch.js';
 import selectedMovie from './modal';
 import pagination from './pagination';
 import modalSettings from './toggleModal';
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+import './local-storage__queue';
