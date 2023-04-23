@@ -1,6 +1,4 @@
-import selectedMovie from "./modal";
-
-const testy = (() => {
+const modalSettings = (() => {
     const refs = {
       
       closeModalBtn: document.querySelector("[data-modal-close]"),
@@ -15,4 +13,4 @@ const testy = (() => {
     }
   })();
   
-  export default testy
+  export default modalSettings
