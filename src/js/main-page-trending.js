@@ -1,5 +1,5 @@
 import getAllGenres from './genres';
-
+import selectedMovie from './modal';
 
 
 const trendingMoviesDOM = document.querySelector('.movie-list');
@@ -21,7 +21,6 @@ getTrendingMovies()
 
 const renderTrendingMovies = response => {
   const movies = response.results;
-  // console.log(movies);
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
 
   const markup = movies
@@ -60,32 +59,15 @@ const renderTrendingMovies = response => {
         movieId = movieListItem.dataset.id;
         localStorage.setItem('movie-id', movieId);
         document.querySelector('.backdrop').classList.remove('is-hidden');
-        console.log(movieListItem);
+       
         
-        console.log(movieId);
-        
+        selectedMovie.getSelectedMovieDetails(movieId)
+        .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
+        .catch((error) => console.log(error))
         
        
       } )
      }) 
-
-      // for (const movie of movies) {
-      //   console.log(movie);
-      //   const testCard = document.querySelector('.movie-card');
-      //   const movieId = movie.id;3,
-      //   testCard.addEventListener('click', () => {
-      //     console.log('blablabla');
-      //     document.querySelector('.movie-card').setAttribute('data-modal-open', '');
-      //     console.log(movieId);
-      //     // document.querySelector('.backdrop').classList.remove('is-hidden');
-  
-      //   })
-      // } 
-    
-
-          
-      
-    
 
     }
    

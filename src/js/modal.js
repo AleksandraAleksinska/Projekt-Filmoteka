@@ -1,22 +1,10 @@
-// import toggleModal from "./toggleModal";
-
 const movieCard = document.querySelector('.modal__movie');
-// const closeModal = document.querySelector('[data-modal-close]');
-// const openModal = document.querySelector('[data-modal-open]');
-// const modal = document.querySelector('[data-modal]');
-// const backdrop = document.querySelector('.backdrop');
 
-
-// openModal.addEventListener('click', toggleModal.open);
-// closeModal.addEventListener('click', toggleModal.close);
-const id = localStorage.getItem('movie-id');
-const getSelectedMovieDetails = async () => {
+const getSelectedMovieDetails = async (id) => {
     try {
-        
         const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
         const selectedMovieFetch = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
         const selectedMovieData = await selectedMovieFetch.json();
-        console.log(selectedMovieData);
         return selectedMovieData;      
     } catch (error) {
         console.log(error.message)
