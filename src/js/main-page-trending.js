@@ -37,7 +37,7 @@ const renderTrendingMovies = response => {
         return genresArray;
       });
       return `
-        <li>
+        <li data-id=${id}>
         <div class="movie-card card-hover">
             <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
@@ -53,6 +53,21 @@ const renderTrendingMovies = response => {
     })
     .join('');
     trendingMoviesDOM.innerHTML = markup;
+    const movieList = document.querySelectorAll('li');
+     movieList.forEach(movieListItem => {
+
+      movieListItem.addEventListener('click', () => {
+        movieId = movieListItem.dataset.id;
+        localStorage.setItem('movie-id', movieId);
+        document.querySelector('.backdrop').classList.remove('is-hidden');
+        console.log(movieListItem);
+        
+        console.log(movieId);
+        
+        
+       
+      } )
+     }) 
 
       // for (const movie of movies) {
       //   console.log(movie);
@@ -68,18 +83,10 @@ const renderTrendingMovies = response => {
       // } 
     
 
-     const movieList = document.querySelectorAll('li');
-     movieList.forEach(movieListItem => {
-      movieListItem.addEventListener('click', () => {
-        movieListItem.setAttribute('data-modal-open', '');
-        console.log('ervr');
-        console.log(movieListItem);  
-       
-      } )
-     })      
+          
       
     
-;
+
     }
    
    

@@ -9,10 +9,10 @@ const movieCard = document.querySelector('.modal__movie');
 
 // openModal.addEventListener('click', toggleModal.open);
 // closeModal.addEventListener('click', toggleModal.close);
-
+const id = localStorage.getItem('movie-id');
 const getSelectedMovieDetails = async () => {
     try {
-        const id = 76600;
+        
         const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
         const selectedMovieFetch = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`);
         const selectedMovieData = await selectedMovieFetch.json();
