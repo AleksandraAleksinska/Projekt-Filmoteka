@@ -33,7 +33,12 @@ const renderSelectedMovieDetails = (movie) => {
         <div class="modal__overview">
             <p class="modal__overview--about">about</p>
             <p>${movie.overview}</p>
-        </div>`
+        </div>
+        <div class="modal__buttons">
+        <button id="add-to-watched" class="button button--accent">add to watched</button>
+        <button id="add-to-queue" class="button button--queue">add to queue</button>
+        </div>
+        `
 
     movieCard.innerHTML = selectedMovie;
 }
