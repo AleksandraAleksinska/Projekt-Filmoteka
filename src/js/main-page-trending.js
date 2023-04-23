@@ -56,7 +56,7 @@ const renderTrendingMovies = response => {
      movieList.forEach(movieListItem => {
 
       movieListItem.addEventListener('click', () => {
-        movieId = movieListItem.dataset.id;
+        const movieId = movieListItem.dataset.id;
         localStorage.setItem('movie-id', movieId);
         document.querySelector('.backdrop').classList.remove('is-hidden');
        
