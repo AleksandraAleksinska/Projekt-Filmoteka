@@ -1,4 +1,7 @@
 import getAllGenres from './genres';
+import selectedMovie from './modal';
+
+
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
 const getTrendingMovies = async (page = 1) => {
@@ -7,7 +10,6 @@ const getTrendingMovies = async (page = 1) => {
   try {
     const moviesData = await fetch(url);
     const moviesDataJSON = await moviesData.json();
-    console.log(moviesDataJSON);
     return moviesDataJSON;
   } catch (error) {
     console.log(error.message);
@@ -19,11 +21,10 @@ getTrendingMovies()
 
 const renderTrendingMovies = response => {
   const movies = response.results;
-  // console.log(movies);
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
 
   const markup = movies
-    .map(({ poster_path, title, release_date, genre_ids }) => {
+    .map(({ poster_path, title, release_date, genre_ids, id }) => {
       const releaseYear = release_date.slice(0, 4);
       const savedGenres = localStorage.getItem('genres');
       const parsedGenres = JSON.parse(savedGenres);
@@ -34,9 +35,8 @@ const renderTrendingMovies = response => {
         }
         return genresArray;
       });
-      console.log(movieGenres);
       return `
-        <li>
+        <li data-id=${id}>
         <div class="movie-card card-hover">
             <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
             />
@@ -51,8 +51,28 @@ const renderTrendingMovies = response => {
         `;
     })
     .join('');
-  trendingMoviesDOM.innerHTML = markup;
-};
+    trendingMoviesDOM.innerHTML = markup;
+    const movieList = document.querySelectorAll('li');
+     movieList.forEach(movieListItem => {
+
+      movieListItem.addEventListener('click', () => {
+        const movieId = movieListItem.dataset.id;
+        localStorage.setItem('movie-id', movieId);
+        document.querySelector('.backdrop').classList.remove('is-hidden');
+       
+        
+        selectedMovie.getSelectedMovieDetails(movieId)
+        .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
+        .catch((error) => console.log(error))
+        
+       
+      } )
+     }) 
+
+    }
+   
+   
 
 const trendingMovies = { getTrendingMovies, renderTrendingMovies };
 export default trendingMovies;
+

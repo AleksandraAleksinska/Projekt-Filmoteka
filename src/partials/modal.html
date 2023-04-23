@@ -1,10 +1,8 @@
-<div class="modal">
-  <svg class="modal__close" width="30" height="30">
-    <use href="./images/icons.svg#icon-close"></use>
-  </svg>
-  <div class="modal__movie"></div>
-  <div class="modal__buttons">
-    <button id="add-to-watched" class="button button--accent">add to watched</button>
-    <button id="add-to-queue" class="button button--queue">add to queue</button>
+<div class="backdrop is-hidden" data-modal>
+  <div class="modal">
+    <svg class="modal__close" data-modal-close>
+      <use href="./images/icons.svg#icon-close"></use>
+    </svg>
+    <div class="modal__movie"></div>
   </div>
 </div>
