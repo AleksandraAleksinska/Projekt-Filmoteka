@@ -1,52 +1,99 @@
 @import '../utils/rating-frame';
 
 .modal {
-  opacity: 1;
-  margin: 20px 20px 38px 20px;
-  padding: 48px 20px 40px 20px;
-  background-color: rgb(190, 190, 211);
+  margin: 20px 20px 38px;
+  padding: 48px 20px 40px;
+  width: 280px;
+  background-color: $color-third;
   position: relative;
+  overflow-y: auto;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+
+  @media screen and (min-width: 768px) {
+    padding: 40px 72px 40px 36px;
+    width: 704px;
+    height: fit-content;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 40px 12px;
+    width: 806px;
+  }
   &__close {
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 8px;
     right: 8px;
     stroke: black;
+    border-radius: 50%;
+    border-color: $color-first;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    &:hover {
+      stroke: $color-second;
+      border: 1px solid $color-second;
+    }
   }
   &__movie {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      gap: 68px;
+    }
+    @media screen and (min-width: 1024px) {
+      gap: 16px;
+    }
   }
   &__img {
     width: 100%;
     display: block;
+    border-radius: 5px;
+    @media screen and (min-width: 768px) {
+      max-width: 264px;
+    }
+    @media screen and (min-width: 1024px) {
+      max-width: 375px;
+    }
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
   &__title {
     font-size: 20px;
     font-weight: 500;
     line-height: 1.15;
     color: black;
-  }
-  &__info-wrapper {
-    display: flex;
-    gap: 40px;
+    @media screen and (min-width: 1024px) {
+      font-size: 30px;
+      line-height: 1.17;
+    }
   }
   &__info {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    &-key {
+      color: #8c8c8c;
+      white-space: nowrap;
+      min-width: 100px;
+    }
+    &-number {
+      line-height: 1.17;
+    }
+    &-value {
+      color: black;
+    }
+  }
+  &__info-item {
+    display: flex;
+    flex-direction: row;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.33;
-    &--key {
-      color: #8c8c8c;
-    }
-    &--number {
-      line-height: 1.17;
-    }
-    &--value {
-      color: black;
-    }
   }
   &__overview {
     font-size: 12px;
@@ -58,11 +105,9 @@
       line-height: 1.33;
     }
   }
-
   &__buttons {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
     gap: 20px;
     @media screen and (min-width: 768px) {
       gap: 15px;

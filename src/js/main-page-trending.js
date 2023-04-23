@@ -48,14 +48,26 @@ const renderTrendingMovies = (response) => {
             </div>
         </div>
         </li>
-        `
+        `;
     })
     .join('');
-    trendingMoviesDOM.innerHTML=markup;
+    trendingMoviesDOM.innerHTML = markup;
+    const movieList = document.querySelectorAll('li');
+     movieList.forEach(movieListItem => {
 
-}
+      movieListItem.addEventListener('click', () => {
+        const movieId = movieListItem.dataset.id;
+        localStorage.setItem('movie-id', movieId);
+        document.querySelector('.backdrop').classList.remove('is-hidden');
+       
+        
+        selectedMovie.getSelectedMovieDetails(movieId)
+        .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
+        .catch((error) => console.log(error))
+        
+       
+      } )
+     }) 
 
 
-
-const trendingMovies = {getTrendingMovies, renderTrendingMovies};
-export default trendingMovies;
+    }
