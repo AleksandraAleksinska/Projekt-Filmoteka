@@ -1,4 +1,7 @@
 import getAllGenres from './genres';
+
+
+
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
 const getTrendingMovies = async (page = 1) => {
@@ -51,20 +54,36 @@ const renderTrendingMovies = response => {
     .join('');
     trendingMoviesDOM.innerHTML = markup;
 
-    for (const movie of movies) {
-
-      const testCard = document.querySelector('.movie-card');
-      
-           
-      testCard.addEventListener('click', () => {
-        console.log('blablabla');
-
-      })
+      // for (const movie of movies) {
+      //   console.log(movie);
+      //   const testCard = document.querySelector('.movie-card');
+      //   const movieId = movie.id;3,
+      //   testCard.addEventListener('click', () => {
+      //     console.log('blablabla');
+      //     document.querySelector('.movie-card').setAttribute('data-modal-open', '');
+      //     console.log(movieId);
+      //     // document.querySelector('.backdrop').classList.remove('is-hidden');
+  
+      //   })
+      // } 
     
-};
+
+     const movieList = document.querySelectorAll('li');
+     movieList.forEach(movieListItem => {
+      movieListItem.addEventListener('click', () => {
+        movieListItem.setAttribute('data-modal-open', '');
+        console.log('ervr');
+        console.log(movieListItem);  
+       
+      } )
+     })      
+      
+    
+;
     }
    
    
 
 const trendingMovies = { getTrendingMovies, renderTrendingMovies };
 export default trendingMovies;
+
