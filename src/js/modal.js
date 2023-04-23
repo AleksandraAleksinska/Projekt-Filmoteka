@@ -46,6 +46,11 @@ const renderSelectedMovieDetails = (movie) => {
         </div>`
 
     movieCard.innerHTML = selectedMovie;
+
+    const btnAddToQueue = document.querySelector('.button--queue');
+    btnAddToQueue.addEventListener('click', () => {
+        localStorage.setItem('queue-movie', JSON.stringify(movie));
+      })
 }
 
 const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
