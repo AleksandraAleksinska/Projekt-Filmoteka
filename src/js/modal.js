@@ -48,9 +48,5 @@ const renderSelectedMovieDetails = (movie) => {
     movieCard.innerHTML = selectedMovie;
 }
 
-getSelectedMovieDetails()
-    .then((movie) => renderSelectedMovieDetails(movie))
-    .catch((error) => console.log(error));
-
 const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
 export default selectedMovie;
