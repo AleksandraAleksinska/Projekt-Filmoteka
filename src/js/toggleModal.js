@@ -4,7 +4,6 @@ const modalSettings = (() => {
     closeModalBtn: document.querySelector("[data-modal-close]"),
     modal: document.querySelector("[data-modal]"),
   };
-  
     
   refs.closeModalBtn.addEventListener("click", toggleModal);
   
@@ -24,5 +23,5 @@ const modalSettings = (() => {
     refs.modal.classList.toggle("is-hidden");
   }
 })();
-  
-  export default modalSettings
+
+export default modalSettings
