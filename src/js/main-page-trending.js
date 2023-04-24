@@ -52,7 +52,11 @@ const renderTrendingMovies = response => {
         `;
     })
     .join('');
-  trendingMoviesDOM.innerHTML = markup;
+    
+    if(trendingMoviesDOM){
+      trendingMoviesDOM.innerHTML = markup;
+    }
+  
   const movieList = document.querySelectorAll('li');
   movieList.forEach(movieListItem => {
 
