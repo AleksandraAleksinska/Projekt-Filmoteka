@@ -5,8 +5,7 @@
   transform: scale(1.5);
 }
 
-.backdrop {
-  
+.backdrop {  
   position: fixed;
   top: 0;
   left: 0;
@@ -21,5 +20,5 @@
   top: 0;    
   background-color: rgba(0, 0, 0, 0.5);
   transition: transform 0.4s;
-  z-index: 2;
+  z-index: 1;
 }

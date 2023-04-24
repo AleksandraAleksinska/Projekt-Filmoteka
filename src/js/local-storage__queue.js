@@ -60,7 +60,21 @@ const renderQueueMovie = (movie) => {
 
     }
    
-   
+const libBtnQueue = document.querySelector('.active-button');
+const libBtnWatched = document.querySelector('.btn-watched');
+
+libBtnWatched.addEventListener('click', () => {
+  queueMoviesDOM.classList.add('d-none');
+  libBtnWatched.classList.add('active-button');
+  libBtnQueue.classList.remove('active-button'); 
+
+})
+libBtnQueue.addEventListener('click', () => {
+  queueMoviesDOM.classList.remove('d-none');
+  libBtnWatched.classList.remove('active-button');
+  libBtnQueue.classList.add('active-button'); 
+
+})
 
 
 
