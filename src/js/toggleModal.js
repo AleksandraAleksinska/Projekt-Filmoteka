@@ -1,16 +1,27 @@
 const modalSettings = (() => {
-    const refs = {
+  const refs = {
       
-      closeModalBtn: document.querySelector("[data-modal-close]"),
-      modal: document.querySelector("[data-modal]"),
-    };
-  
+    closeModalBtn: document.querySelector("[data-modal-close]"),
+    modal: document.querySelector("[data-modal]"),
+  };
     
-    refs.closeModalBtn.addEventListener("click", toggleModal);
+  refs.closeModalBtn.addEventListener("click", toggleModal);
   
-    function toggleModal() {
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("backdrop")) {
       refs.modal.classList.toggle("is-hidden");
     }
-  })();
+  });
+
+  document.addEventListener("keydown", e => {
+    if (e.code === "Escape") {
+      refs.modal.classList.toggle("is-hidden");
+    }
+  });
   
-  export default modalSettings
+  function toggleModal() {
+    refs.modal.classList.toggle("is-hidden");
+  }
+})();
+
+export default modalSettings
