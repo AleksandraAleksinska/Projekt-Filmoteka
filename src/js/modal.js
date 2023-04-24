@@ -12,9 +12,11 @@ const getSelectedMovieDetails = async (id) => {
         console.log(error.message)
     }
 }
-
 const renderSelectedMovieDetails = (movie) => {
     const imgUrl = 'https://image.tmdb.org/t/p/w500';
+    const backdrop = document.querySelector('.backdrop');
+    backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
+
     const selectedMovie =
         `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
         <div class="modal__wrapper">
@@ -53,9 +55,7 @@ const renderSelectedMovieDetails = (movie) => {
     btnAddToQueue.addEventListener('click', () => {
         let queueArray = [];
         localStorage.setItem('queue-movie', JSON.stringify(movie));
-      })
-
-    
+    })
 }
 
 const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }

@@ -31,7 +31,7 @@ const toggleModal = (() => {
   const closeOnBackdrop = () => {
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('backdrop')) {
-        refs.modal.classList.toggle('is-hidden');
+        closeModal();
         document.removeEventListener('click', closeOnBackdrop);
       }
     })
