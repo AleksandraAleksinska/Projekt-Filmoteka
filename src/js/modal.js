@@ -64,3 +64,4 @@ getSelectedMovieDetails()
 
 const SelectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails }
 export default SelectedMovie;
+
