@@ -1,12 +1,14 @@
 import selectedMovie from "./modal";
 
 const queueMoviesDOM = document.querySelector('.users-queue-list');
-const savedMovieId = localStorage.getItem('movie-id');
-const parsedMovieId = JSON.parse(savedMovieId);
+const savedMovie = localStorage.getItem('queue-movie');
+const parsedMovie = JSON.parse(savedMovie);
+const queueMovieId = parsedMovie.id;
+console.log(queueMovieId)
 
 const getQueueMovie = async (page = 1) => {
   const APIkey = 'ac3e035161883f7175e5be9954a0068d';
-  const url = `https://api.themoviedb.org/3/movie/${parsedMovieId}?api_key=${APIkey}&page=${page}`;
+  const url = `https://api.themoviedb.org/3/movie/${queueMovieId}?api_key=${APIkey}&page=${page}`;
   try {
     const movieData = await fetch(url);
     const movieDataJSON = await movieData.json();
@@ -58,23 +60,31 @@ const renderQueueMovie = (movie) => {
       } )
      }) 
 
-    }
+    const libBtnQueue = document.querySelector('.active-button');
+    const libBtnWatched = document.querySelector('.btn-watched');
+
+    libBtnWatched.addEventListener('click', () => {
+    queueMoviesDOM.classList.add('d-none');
+    libBtnWatched.classList.add('active-button');
+    libBtnQueue.classList.remove('active-button'); 
+
+    })
+    libBtnQueue.addEventListener('click', () => {
+    queueMoviesDOM.classList.remove('d-none');
+    libBtnWatched.classList.remove('active-button');
+    libBtnQueue.classList.add('active-button'); 
+
+    })
+
+    const btnAddToWatched = document.querySelector('.button--watched');
+    btnAddToWatched.addEventListener('click', () => {
+        
+        
+      })
+
+  }
    
-const libBtnQueue = document.querySelector('.active-button');
-const libBtnWatched = document.querySelector('.btn-watched');
 
-libBtnWatched.addEventListener('click', () => {
-  queueMoviesDOM.classList.add('d-none');
-  libBtnWatched.classList.add('active-button');
-  libBtnQueue.classList.remove('active-button'); 
-
-})
-libBtnQueue.addEventListener('click', () => {
-  queueMoviesDOM.classList.remove('d-none');
-  libBtnWatched.classList.remove('active-button');
-  libBtnQueue.classList.add('active-button'); 
-
-})
 
 
 
