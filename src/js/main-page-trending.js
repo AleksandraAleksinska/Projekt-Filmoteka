@@ -58,7 +58,7 @@ const renderTrendingMovies = response => {
 
 
     movieListItem.addEventListener('click', () => {
-      movieId = movieListItem.dataset.id;
+      const movieId = movieListItem.dataset.id;
       localStorage.setItem('movie-id', movieId);
       setTimeout(() => toggleModal.openModal(), 50);
 
