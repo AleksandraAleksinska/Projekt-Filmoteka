@@ -3,7 +3,7 @@ import selectedMovie from './modal';
 export { saveData };
 export { addToLocalStorage };
 
-//const btnWatched = document.querySelector('.button--accent');
+const btnWatched = document.querySelector('#add-to-watched');
 
 btnWatched.addEventListener('click', addToLocalStorage);
 
@@ -15,7 +15,7 @@ btnWatched.addEventListener('click', addToLocalStorage);
 
 function addToLocalStorage(movie) {
   const btnWatched = document.querySelector('#add-to-watched');
-
+  console.log('hello');
   const statusWatched = localStorage.getItem('watched');
 
   if (!statusWatched) {

@@ -7,3 +7,4 @@ import selectedMovie from './modal';
 import trendingMovies from './main-page-trending';
 import {addToLocalStorage} from './localStorageWatchedMovies.js'
 import {saveData} from './localStorageWatchedMovies.js'
+
