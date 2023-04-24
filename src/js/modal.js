@@ -54,17 +54,41 @@ const renderSelectedMovieDetails = movie => {
   addToWatchedButton.addEventListener('click', () => {
     const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies')) || [];
     const movieToAdd = { id: movie.id, title: movie.title };
+<<<<<<< Updated upstream
     watchedMovies.push(movieToAdd);
     localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+=======
+    const isDuplicate = watchedMovies.some(movie => movie.id === movieToAdd.id);
+
+    if (!isDuplicate) {
+      watchedMovies.push(movieToAdd);
+      localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
+    } else {
+      console.log('Ten film już istnieje w liście obejrzanych.');
+    }
+>>>>>>> Stashed changes
   });
 
   addToQueueButton.addEventListener('click', () => {
     const queuedMovies = JSON.parse(localStorage.getItem('queuedMovies')) || [];
     const movieToAdd = { id: movie.id, title: movie.title };
+<<<<<<< Updated upstream
     queuedMovies.push(movieToAdd);
     localStorage.setItem('queuedMovies', JSON.stringify(queuedMovies));
   });
 };
+=======
+    const isDuplicate = queuedMovies.some(movie => movie.id === movieToAdd.id);
+
+    if (!isDuplicate) {
+      queuedMovies.push(movieToAdd);
+      localStorage.setItem('queuedMovies', JSON.stringify(queuedMovies));
+    } else {
+      console.log('Ten film już istnieje w liście do obejrzenia.');
+    }
+  });
+}
+>>>>>>> Stashed changes
 
 getSelectedMovieDetails()
   .then(movie => renderSelectedMovieDetails(movie))
