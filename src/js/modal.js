@@ -20,7 +20,7 @@ const renderSelectedMovieDetails = (movie) => {
                 <ul class="modal__info">
                     <li class="modal__info-item">
                         <p class="modal__info-key">Vote / Votes</p>
-                        <p class="modal__info-number"><p class="rating-frame">${movie.vote_average.toFixed(1)}</p>&nbsp/&nbsp${movie.vote_count}</p>
+                        <p class="modal__info-number"><p class="rating-frame">${movie.vote_average.toFixed(1)}</p>&nbsp/&nbsp<p class="rating-frame--gray">${movie.vote_count}</p></p>
                     </li>
                     <li class="modal__info-item">
                         <p class="modal__info-key">Popularity</p>
