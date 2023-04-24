@@ -56,10 +56,12 @@ const renderTrendingMovies = response => {
   const movieList = document.querySelectorAll('li');
   movieList.forEach(movieListItem => {
 
+
     movieListItem.addEventListener('click', () => {
       movieId = movieListItem.dataset.id;
       localStorage.setItem('movie-id', movieId);
       setTimeout(() => toggleModal.openModal(), 50);
+
         
       selectedMovie.getSelectedMovieDetails(movieId)
         .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
