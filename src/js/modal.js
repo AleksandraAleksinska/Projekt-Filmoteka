@@ -4,7 +4,7 @@ const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async () => {
   try {
-    const id = 76600;
+    const id = 555;
     const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
     const selectedMovieFetch = await fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
@@ -54,10 +54,6 @@ const renderSelectedMovieDetails = movie => {
   addToWatchedButton.addEventListener('click', () => {
     const watchedMovies = JSON.parse(localStorage.getItem('watchedMovies')) || [];
     const movieToAdd = { id: movie.id, title: movie.title };
-<<<<<<< Updated upstream
-    watchedMovies.push(movieToAdd);
-    localStorage.setItem('watchedMovies', JSON.stringify(watchedMovies));
-=======
     const isDuplicate = watchedMovies.some(movie => movie.id === movieToAdd.id);
 
     if (!isDuplicate) {
@@ -66,18 +62,11 @@ const renderSelectedMovieDetails = movie => {
     } else {
       console.log('Ten film już istnieje w liście obejrzanych.');
     }
->>>>>>> Stashed changes
   });
 
   addToQueueButton.addEventListener('click', () => {
     const queuedMovies = JSON.parse(localStorage.getItem('queuedMovies')) || [];
     const movieToAdd = { id: movie.id, title: movie.title };
-<<<<<<< Updated upstream
-    queuedMovies.push(movieToAdd);
-    localStorage.setItem('queuedMovies', JSON.stringify(queuedMovies));
-  });
-};
-=======
     const isDuplicate = queuedMovies.some(movie => movie.id === movieToAdd.id);
 
     if (!isDuplicate) {
@@ -87,8 +76,7 @@ const renderSelectedMovieDetails = movie => {
       console.log('Ten film już istnieje w liście do obejrzenia.');
     }
   });
-}
->>>>>>> Stashed changes
+};
 
 getSelectedMovieDetails()
   .then(movie => renderSelectedMovieDetails(movie))
