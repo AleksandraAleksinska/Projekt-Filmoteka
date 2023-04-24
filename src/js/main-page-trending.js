@@ -1,4 +1,8 @@
-import getAllGenres from "./genres";
+import getAllGenres from './genres';
+import selectedMovie from './modal';
+import toggleModal from './toggleModal';
+
+
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
 
@@ -44,30 +48,35 @@ const renderTrendingMovies = (response) => {
             />
             <div class="movie-card__desc">
             <p class="movie-card__title">${title}</p>
-            <p class="movie-card__info"> ${movieGenres.slice(0, 3)} | ${releaseYear}</p>                     
+            <p class="movie-card__info"> ${movieGenres
+          .slice(0, 3)
+          .join(', ')} | ${releaseYear}</p>                     
             </div>
         </div>
         </li>
         `;
     })
     .join('');
-    trendingMoviesDOM.innerHTML = markup;
-    const movieList = document.querySelectorAll('li');
-     movieList.forEach(movieListItem => {
+  trendingMoviesDOM.innerHTML = markup;
+  const movieList = document.querySelectorAll('li');
+  movieList.forEach(movieListItem => {
 
-      movieListItem.addEventListener('click', () => {
-        const movieId = movieListItem.dataset.id;
-        localStorage.setItem('movie-id', movieId);
-        document.querySelector('.backdrop').classList.remove('is-hidden');
-       
+
+    movieListItem.addEventListener('click', () => {
+      movieId = movieListItem.dataset.id;
+      localStorage.setItem('movie-id', movieId);
+      setTimeout(() => toggleModal.openModal(), 50);
+
         
-        selectedMovie.getSelectedMovieDetails(movieId)
+      selectedMovie.getSelectedMovieDetails(movieId)
         .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
         .catch((error) => console.log(error))
-        
-       
-      } )
-     }) 
+    })
+  })
+};
+   
+   
 
+const trendingMovies = { getTrendingMovies, renderTrendingMovies };
+export default trendingMovies;
 
-    }
