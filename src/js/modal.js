@@ -1,3 +1,5 @@
+import toggleModal from "./toggleModal";
+
 const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async (id) => {
