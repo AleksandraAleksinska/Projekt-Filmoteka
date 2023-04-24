@@ -126,8 +126,10 @@
     background: transparent;
     border-radius: 5px;
     cursor: pointer;
+    
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: #ff6b01;
       border: transparent;
       box-shadow: 4px 4px 40px 15px #ff6b0187;
@@ -136,6 +138,11 @@
 
   &__libBtn.btn-watched {
     margin-right: 20px;
+  }
+  &__libBtn.active-button {
+    background: #ff6b01;
+      border: transparent;
+      box-shadow: 4px 4px 40px 15px #ff6b0187;
   }
 }
 
