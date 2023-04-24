@@ -9,5 +9,11 @@
   &--gray {
     color: black;
     background-color: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    width: 36px;
+    height: 16px;
+    border-radius: 5px;
+    
   }
 }

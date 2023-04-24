@@ -14,9 +14,23 @@
     background-color: $color-second;
     border: none;
     width: 110px;
+    
+    @media screen and (min-width: 768px) {
+      width: 125px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 136px;
+    }
   }
   &--queue {
     border: 1px solid black;
     width: 110px;
+
+    @media screen and (min-width: 768px) {
+      width: 125px;
+    }
+    @media screen and (min-width: 1280px) {
+      width: 136px;
+    }
   }
 }
