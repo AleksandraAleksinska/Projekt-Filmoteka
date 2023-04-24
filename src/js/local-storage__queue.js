@@ -6,6 +6,9 @@ const parsedMovies = JSON.parse(savedMovies);
 // const queueMovieId = parsedMovies.id;
 console.log(parsedMovies)
 
+
+if(queueMoviesDOM) {
+
 const renderQueueMovie = parsedMovies.forEach((movie) => {
   
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
@@ -24,11 +27,9 @@ const renderQueueMovie = parsedMovies.forEach((movie) => {
         </li>
         `;
     
-    if (queueMoviesDOM) {
-      queueMoviesDOM.insertAdjacentHTML('beforeend', markup);
-    }
     
-    const movieList = document.querySelectorAll('li');
+      queueMoviesDOM.insertAdjacentHTML('beforeend', markup);
+      const movieList = document.querySelectorAll('li');
      movieList.forEach(movieListItem => {
 
       movieListItem.addEventListener('click', () => {
@@ -48,24 +49,18 @@ const renderQueueMovie = parsedMovies.forEach((movie) => {
     const libBtnQueue = document.querySelector('.active-button');
     const libBtnWatched = document.querySelector('.btn-watched');
 
-    if (queueMoviesDOM) {
+    libBtnWatched.addEventListener('click', () => {
+    queueMoviesDOM.classList.add('d-none');
+    libBtnWatched.classList.add('active-button');
+    libBtnQueue.classList.remove('active-button'); 
 
-      libBtnWatched.addEventListener('click', () => {
-        queueMoviesDOM.classList.add('d-none');
-        libBtnWatched.classList.add('active-button');
-        libBtnQueue.classList.remove('active-button'); 
-    
-        })
-        libBtnQueue.addEventListener('click', () => {
-        queueMoviesDOM.classList.remove('d-none');
-        libBtnWatched.classList.remove('active-button');
-        libBtnQueue.classList.add('active-button'); 
-    
-        })   
-            
+    })
+    libBtnQueue.addEventListener('click', () => {
+    queueMoviesDOM.classList.remove('d-none');
+    libBtnWatched.classList.remove('active-button');
+    libBtnQueue.classList.add('active-button'); 
 
+    })
 
-    }
-
-    
   })
+}
