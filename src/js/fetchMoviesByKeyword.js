@@ -53,7 +53,7 @@ const renderMoviesList = data => {
     return `
       <li data-id=${id}>
       <div class="movie-card card-hover">
-          <img class="movie-card__img" src="${IMAGE_URL}${poster_path}" loading="lazy" 
+      <img class="movie-card__img" src="${poster_path ? IMAGE_URL+poster_path :'https://upload.wikimedia.org/wikipedia/commons/6/62/%22No_Image%22_placeholder.png' }" loading="lazy"  
           />
           <div class="movie-card__desc">
           <p class="movie-card__title">${title}</p>
