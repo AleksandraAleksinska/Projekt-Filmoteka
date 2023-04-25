@@ -56,16 +56,33 @@ const renderSelectedMovieDetails = movie => {
   movieCard.innerHTML = selectedMovie;
 
   const btnAddToQueue = document.querySelector('.button--queue');
+
   btnAddToQueue.addEventListener('click', () => {
     const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
-    currentQueue.push(movie);
-    localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+    const movieToAdd = { id: movie.id, title: movie.title };
+
+    const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
+    if (!isDuplicate) {
+        currentQueue.push(movie);
+        localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+      } else {
+        console.log('Ten film już istnieje w liście do obejrzenia.');
+      }
   });
+
   const btnAddToWatched = document.querySelector('#add-to-watched');
+
   btnAddToWatched.addEventListener('click', () => {
     const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
-    currentWatched.push(movie);
-    localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+    const movieToAdd = { id: movie.id, title: movie.title };
+
+    const isDuplicate = currentWatched.some(movie => movieToAdd.id === movie.id);
+    if (!isDuplicate) {
+        currentWatched.push(movie);
+        localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+      } else {
+        console.log('Ten film już istnieje w liście obejrzanych.');
+      }
   });
 };
 
