@@ -61,6 +61,12 @@ const renderSelectedMovieDetails = movie => {
     currentQueue.push(movie);
     localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
   });
+  const btnAddToWatched = document.querySelector('#add-to-watched');
+  btnAddToWatched.addEventListener('click', () => {
+    const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
+    currentWatched.push(movie);
+    localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+  });
 };
 
 const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails };
