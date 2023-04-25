@@ -58,8 +58,8 @@ const renderQueueMovie = parsedMovies.forEach((movie) => {
   
       })
       libBtnQueue.addEventListener('click', () => {
-      queueMoviesDOM.classList.remove('d-none');
       watchedMoviesDOM.classList.add('d-none');
+      queueMoviesDOM.classList.remove('d-none');      
       libBtnWatched.classList.remove('active-button');
       libBtnQueue.classList.add('active-button'); 
   
