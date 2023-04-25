@@ -22,6 +22,9 @@
       }
 
 }
+.users-queue-list:last-child {
+  justify-content: flex-start;
+}
 
 .d-none{
   display:none;

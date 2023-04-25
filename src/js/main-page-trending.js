@@ -23,28 +23,26 @@ getTrendingMovies()
 .then((movies) => renderTrendingMovies(movies))
 .catch((error) => console.log(error));
 
-const renderTrendingMovies = (response) => {
-    const movies = response.results; 
-    // console.log(movies);
-    const imgUrl = 'https://image.tmdb.org/t/p/w500'; 
-   
-    const markup = (movies)   
-    .map(({poster_path, title, release_date, genre_ids}) => {
-        const releaseYear = release_date.slice(0, 4);
-        const savedGenres = localStorage.getItem("genres");
-        const parsedGenres = JSON.parse(savedGenres);
-        const movieGenres = parsedGenres.flatMap((genre) => {
-            let genresArray = [];
-            if(genre_ids.includes(genre.id)) {
-                genresArray.push(genre.name);                
-            }            
-            return genresArray;
-        })
-        console.log(movieGenres);
-        return `
-        <li>
-        <div class="movie-card">
-            <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
+const renderTrendingMovies = response => {
+  const movies = response.results;
+  const imgUrl = 'https://image.tmdb.org/t/p/w500';
+
+  const markup = movies
+    .map(({ poster_path, title, release_date, genre_ids, id }) => {
+      const releaseYear = release_date.slice(0, 4);
+      const savedGenres = localStorage.getItem('genres');
+      const parsedGenres = JSON.parse(savedGenres);
+      const movieGenres = parsedGenres.flatMap(genre => {
+        let genresArray = [];
+        if (genre_ids.includes(genre.id)) {
+          genresArray.push(genre.name);
+        }
+        return genresArray;
+      });
+      return `
+        <li data-id=${id}>
+        <div class="movie-card card-hover">
+            <img class="movie-card__img" src="${poster_path ? imgUrl+poster_path :'https://upload.wikimedia.org/wikipedia/commons/6/62/%22No_Image%22_placeholder.png' }" loading="lazy" 
             />
             <div class="movie-card__desc">
             <p class="movie-card__title">${title}</p>
@@ -57,7 +55,11 @@ const renderTrendingMovies = (response) => {
         `;
     })
     .join('');
-  trendingMoviesDOM.innerHTML = markup;
+    
+    if(trendingMoviesDOM){
+      trendingMoviesDOM.innerHTML = markup;
+    }
+  
   const movieList = document.querySelectorAll('li');
   movieList.forEach(movieListItem => {
 
