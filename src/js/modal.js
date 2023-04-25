@@ -1,4 +1,5 @@
 const movieCard = document.querySelector('.modal__movie');
+import Notiflix from 'notiflix';
 
 const getSelectedMovieDetails = async id => {
   try {
@@ -16,7 +17,7 @@ const getSelectedMovieDetails = async id => {
 const renderSelectedMovieDetails = movie => {
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
   const backdrop = document.querySelector('.backdrop');
-    backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
+  backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
   const selectedMovie = `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
         <div class="modal__wrapper">
             <h2 class="modal__title uppercase"> ${movie.title}</h2>
@@ -63,11 +64,12 @@ const renderSelectedMovieDetails = movie => {
 
     const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
     if (!isDuplicate) {
-        currentQueue.push(movie);
-        localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
-      } else {
-        console.log('Ten film już istnieje w liście do obejrzenia.');
-      }
+      Notiflix.Notify.info(`"${movie.title}"  sucesfully added to queue`);
+      currentQueue.push(movie);
+      localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+    } else {
+      Notiflix.Notify.info(`Unable to add "${movie.title}" to queue. Your  movie is already there`);
+    }
   });
 
   const btnAddToWatched = document.querySelector('#add-to-watched');
@@ -78,11 +80,12 @@ const renderSelectedMovieDetails = movie => {
 
     const isDuplicate = currentWatched.some(movie => movieToAdd.id === movie.id);
     if (!isDuplicate) {
-        currentWatched.push(movie);
-        localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
-      } else {
-        console.log('Ten film już istnieje w liście obejrzanych.');
-      }
+      Notiflix.Notify.info(`"${movie.title}"  sucesfully added to watched`);
+      currentWatched.push(movie);
+      localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+    } else {
+      Notiflix.Notify.info(`Unable to add "${movie.title}" to watched. Your  movie is already there`);
+    }
   });
 };
 
