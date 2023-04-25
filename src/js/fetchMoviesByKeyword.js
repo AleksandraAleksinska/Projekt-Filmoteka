@@ -16,9 +16,9 @@ async function getMoviesbyKeyword() {
   return data;
 }
 
-getMoviesbyKeyword()
-  .then(data => console.log(data.results))
-  .catch(({ message }) => console.log(message));
+// getMoviesbyKeyword()
+//   .then(data => console.log(data.results))
+//   .catch(({ message }) => console.log(message));
 
 const handleSubmitKeyword = e => {
   e.preventDefault();

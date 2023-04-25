@@ -4,7 +4,7 @@ const queueMoviesDOM = document.querySelector('.users-queue-list');
 const savedMovies = localStorage.getItem('queue-movie');
 const parsedMovies = JSON.parse(savedMovies);
 // const queueMovieId = parsedMovies.id;
-console.log(parsedMovies)
+// console.log(parsedMovies)
 
 
 if(queueMoviesDOM) {
@@ -12,7 +12,7 @@ if(queueMoviesDOM) {
 const renderQueueMovie = parsedMovies.forEach((movie) => {
   
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
-  console.log(movie);
+  // console.log(movie);
   const releaseYear = movie.release_date.slice(0, 4);
   const markup = `
         <li data-id=${movie.id}>
