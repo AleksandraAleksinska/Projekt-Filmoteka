@@ -4,16 +4,12 @@ const queueMoviesDOM = document.querySelector('.users-queue-list')
 const watchedMoviesDOM = document.querySelector('.users-watched-list');
 const savedMovies = localStorage.getItem('watched-movie');
 const parsedMovies = JSON.parse(savedMovies);
-// const queueMovieId = parsedMovies.id;
-// console.log(parsedMovies)
-
 
 if(watchedMoviesDOM) {
 
 const renderQueueMovie = parsedMovies.forEach((movie) => {
   
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
-  // console.log(movie);
   const releaseYear = movie.release_date.slice(0, 4);
   const markup = `
         <li data-id=${movie.id}>
@@ -41,8 +37,7 @@ const renderQueueMovie = parsedMovies.forEach((movie) => {
         
         selectedMovie.getSelectedMovieDetails(movieId)
         .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
-        .catch((error) => console.log(error))
-        
+        .catch((error) => console.log(error))        
        
       } )
      }) 
