@@ -25,7 +25,7 @@ const getPagination = async () => {
 
     pagination.on('afterMove', event => {
       const currentPage = event.page;
-      console.log(currentPage);
+
       Loader.open()
 
       trendingMovies
