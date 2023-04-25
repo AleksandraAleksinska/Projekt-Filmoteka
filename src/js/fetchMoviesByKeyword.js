@@ -21,11 +21,7 @@ async function getMoviesbyKeyword(keyword,page=1) {
   return data;
 }
 
-// getMoviesbyKeyword()
-//   .then(data => console.log(data.results))
-//   .catch(({ message }) => console.log(message));
-
-function handleSubmitKeyword(e) {
+const handleSubmitKeyword = (e) => {
   e.preventDefault();
   keyword = e.currentTarget.name.value.trim();
   gallery.innerHTML = '';
