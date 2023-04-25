@@ -1,5 +1,7 @@
 import selectedMovie from "./modal";
 import toggleModal from "./toggleModal";
+import Pagination from 'tui-pagination';
+import 'tui-pagination/dist/tui-pagination.css';
 
 const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
 let keyword = '';
@@ -11,9 +13,9 @@ const gallery = qs('.movie-list');
 const form = qs('#header__form');
 
 
-async function getMoviesbyKeyword() {
+async function getMoviesbyKeyword(keyword,page=1) {
   const response = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page}&language=en-US`,
   );
   const data = response.json();
   return data;
@@ -23,18 +25,33 @@ async function getMoviesbyKeyword() {
 //   .then(data => console.log(data.results))
 //   .catch(({ message }) => console.log(message));
 
-const handleSubmitKeyword = e => {
+function handleSubmitKeyword(e) {
   e.preventDefault();
-  const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
   keyword = e.currentTarget.name.value.trim();
+  console.log(keyword);
   gallery.innerHTML = '';
-
-  return getMoviesbyKeyword(keyword)
+  getMoviesbyKeyword(keyword)
     .then(data => {
+      const pagination = new Pagination('pagination', {
+        totalItems: data.total_results,
+        itemsPerPage: 20,
+        visiblePages: 5,
+        centerAlign: true,
+        currentPage: page,
+      });
+      pagination.on('beforeMove', event => {
+        const currentPage = event.page;
+        getMoviesbyKeyword(keyword, currentPage)
+          .then(data => {
+            gallery.innerHTML = '';
+            renderMoviesList(data);
+          })
+          .catch(error => console.log(error));
+      });
       renderMoviesList(data);
     })
-    .catch(({ message }) => console.log(message));
-};
+    .catch(error => console.log(error.message));
+}
 
 const renderMoviesList = data => {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/original';
