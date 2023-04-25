@@ -8,6 +8,7 @@ const toggleModal = (() => {
     
   const openModal = () => {
     refs.modal.classList.remove('is-hidden');
+    refs.closeModalBtn.classList.remove('is-hidden--x');
     window.addEventListener('keydown', closeOnEsc);
     window.addEventListener('click', closeOnBackdrop);
     refs.closeModalBtn.addEventListener('click', closeModal)
@@ -16,6 +17,7 @@ const toggleModal = (() => {
   const closeModal = () => {
     refs.modal.classList.add('is-hidden');
     window.removeEventListener('keydown', closeOnEsc);
+    refs.closeModalBtn.classList.add('is-hidden--x');
   };
 
   const closeOnEsc = () => {
@@ -29,7 +31,7 @@ const toggleModal = (() => {
   const closeOnBackdrop = () => {
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('backdrop')) {
-        refs.modal.classList.toggle('is-hidden');
+        closeModal();
         document.removeEventListener('click', closeOnBackdrop);
       }
     })

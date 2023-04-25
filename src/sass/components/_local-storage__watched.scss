@@ -1,0 +1,31 @@
+.users-watched-list {
+    list-style: none;
+      display:flex;
+      flex-direction: column;
+      gap: 20px;
+      margin: 0px;
+      padding: 20px 0px 40px;
+      justify-content: center;   
+  
+      @media screen and (min-width: 768px) {
+          flex-direction: row;
+          flex-wrap: wrap;
+          gap: 32px;
+          padding-block: 60px;
+          
+        }
+      
+        @media screen and (min-width: 1280px) {
+          gap: 16px;
+          
+          
+        }
+  
+  }
+  .users-watched-list:last-child {
+    justify-content: flex-start;
+  }
+  
+  .d-none{
+    display:none;
+  }

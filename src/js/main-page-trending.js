@@ -39,7 +39,7 @@ const renderTrendingMovies = response => {
       return `
         <li data-id=${id}>
         <div class="movie-card card-hover">
-            <img class="movie-card__img" src="${imgUrl}${poster_path}" loading="lazy" 
+            <img class="movie-card__img" src="${poster_path ? imgUrl+poster_path :'https://upload.wikimedia.org/wikipedia/commons/6/62/%22No_Image%22_placeholder.png' }" loading="lazy" 
             />
             <div class="movie-card__desc">
             <p class="movie-card__title">${title}</p>
@@ -52,13 +52,17 @@ const renderTrendingMovies = response => {
         `;
     })
     .join('');
-  trendingMoviesDOM.innerHTML = markup;
+    
+    if(trendingMoviesDOM){
+      trendingMoviesDOM.innerHTML = markup;
+    }
+  
   const movieList = document.querySelectorAll('li');
   movieList.forEach(movieListItem => {
 
 
     movieListItem.addEventListener('click', () => {
-      movieId = movieListItem.dataset.id;
+      const movieId = movieListItem.dataset.id;
       localStorage.setItem('movie-id', movieId);
       setTimeout(() => toggleModal.openModal(), 50);
 
