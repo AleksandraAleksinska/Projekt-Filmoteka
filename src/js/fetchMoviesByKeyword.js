@@ -1,3 +1,6 @@
+import selectedMovie from "./modal";
+import toggleModal from "./toggleModal";
+
 const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
 let keyword = '';
 let page = 1;
@@ -65,6 +68,22 @@ const renderMoviesList = data => {
     .join('');
 
   gallery.insertAdjacentHTML('beforeend', markup);
+
+  const movieList = document.querySelectorAll('li');
+  movieList.forEach(movieListItem => {
+
+
+    movieListItem.addEventListener('click', () => {
+      const movieId = movieListItem.dataset.id;
+      localStorage.setItem('movie-id', movieId);
+      setTimeout(() => toggleModal.openModal(), 50);
+
+        
+      selectedMovie.getSelectedMovieDetails(movieId)
+        .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
+        .catch((error) => console.log(error))
+    })
+  })
 };
 
 if (form) {
