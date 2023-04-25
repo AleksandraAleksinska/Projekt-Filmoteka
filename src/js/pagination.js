@@ -26,10 +26,13 @@ const getPagination = async () => {
     pagination.on('afterMove', event => {
       const currentPage = event.page;
       console.log(currentPage);
+      Loader.open()
 
       trendingMovies
         .getTrendingMovies(currentPage)
-        .then(data => trendingMovies.renderTrendingMovies(data))
+        .then(data => {
+          Loader.close() 
+          trendingMovies.renderTrendingMovies(data)})
         .catch(error => console.log(error));
     });
   } catch (error) {
