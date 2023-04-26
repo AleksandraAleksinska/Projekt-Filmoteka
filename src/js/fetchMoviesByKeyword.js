@@ -2,6 +2,7 @@ import selectedMovie from "./modal";
 import toggleModal from "./toggleModal";
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import defaultFilmCardImage from '../images/no-image.png'
 
 const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
 let keyword = '';
@@ -14,11 +15,14 @@ const form = qs('#header__form');
 
 
 async function getMoviesbyKeyword(keyword,page=1) {
+  Loader.open()
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${keyword}&page=${page}&language=en-US`,
   );
+  Loader.close()
   const data = response.json();
   return data;
+  
 }
 
 const handleSubmitKeyword = (e) => {
@@ -65,7 +69,7 @@ const renderMoviesList = data => {
     return `
       <li data-id=${id}>
       <div class="movie-card card-hover">
-      <img class="movie-card__img" src="${poster_path ? IMAGE_URL+poster_path :'https://upload.wikimedia.org/wikipedia/commons/6/62/%22No_Image%22_placeholder.png' }" loading="lazy"  
+      <img class="movie-card__img" src="${poster_path ? IMAGE_URL+poster_path :defaultFilmCardImage }" loading="lazy"  
           />
           <div class="movie-card__desc">
           <p class="movie-card__title">${title}</p>
