@@ -8,3 +8,4 @@ import pagination from './pagination';
 import toggleModal from './toggleModal';
 import './local-storage__queue';
 import './local-storage__watched';
+import './modal-team';

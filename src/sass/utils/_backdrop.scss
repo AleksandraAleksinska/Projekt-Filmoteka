@@ -2,6 +2,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  display: none;
   transform: scale(1.5);
   &--x {
     display: none;
