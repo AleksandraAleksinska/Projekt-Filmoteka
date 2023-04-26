@@ -77,9 +77,11 @@ const renderSelectedMovieDetails = movie => {
     if (!isDuplicate) {
         currentQueue.push(movie);
         localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+        window.location.reload();
+        setTimeout(() => {
         btnAddToQueue.classList.add('d-none');
         btnRemoveFromQueue.classList.remove('d-none');
-        window.location.reload();
+        }, 1000) 
         
       } else {
         console.log('Ten film już istnieje w liście do obejrzenia.');
@@ -93,9 +95,12 @@ const renderSelectedMovieDetails = movie => {
     if (!isDuplicateWatched) {
         currentWatched.push(movie);
         localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
-        btnAddToWatched.classList.add('d-none');
-        btnRemoveFromWatched.classList.remove('d-none');
         window.location.reload();
+        setTimeout(() => {
+          btnAddToWatched.classList.add('d-none');
+          btnRemoveFromWatched.classList.remove('d-none');
+        }, 1000)
+        
       } else {
         console.log('Ten film już istnieje w liście obejrzanych.'); 
       }
@@ -110,12 +115,13 @@ const renderSelectedMovieDetails = movie => {
       const index = currentQueue.findIndex(movie => movie.id === movieToAdd.id);
       currentQueue.splice(index, 1);
       localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
-      btnRemoveFromQueue.classList.add('d-none');
-      btnAddToQueue.classList.remove('d-none');
-      btnAddToWatched.classList.add('d-none');
-      btnRemoveFromWatched.classList.remove('d-none');
       window.location.reload();
-      });
+      setTimeout(() => {
+        btnRemoveFromQueue.classList.add('d-none');
+        btnAddToQueue.classList.remove('d-none');
+      }, 1000)
+       
+    });
  
   }
 
@@ -128,11 +134,12 @@ const renderSelectedMovieDetails = movie => {
       const index = currentWatched.findIndex(movie => movie.id === movieToAdd.id);
       currentWatched.splice(index, 1);
       localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
-      btnRemoveFromWatched.classList.add('d-none');
+      window.location.reload();
+      setTimeout(() => {
+        btnRemoveFromWatched.classList.add('d-none');
       btnAddToWatched.classList.remove('d-none');
-      btnAddToQueue.classList.add('d-none');
-      btnRemoveFromQueue.classList.remove('d-none');
-      window.location.reload();  
+      }, 1000)
+      
     });
 
   }
