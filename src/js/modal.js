@@ -1,3 +1,4 @@
+import defaultFilmCardImage from '../images/no-image.png'
 const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async id => {
@@ -17,7 +18,7 @@ const renderSelectedMovieDetails = movie => {
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
   const backdrop = document.querySelector('.backdrop');
     backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
-  const selectedMovie = `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
+  const selectedMovie = `<img class="modal__img" src="${movie.poster_path ? imgUrl+movie.poster_path :defaultFilmCardImage }"></img>
         <div class="modal__wrapper">
             <h2 class="modal__title uppercase"> ${movie.title}</h2>
                 <ul class="modal__info">
@@ -63,20 +64,16 @@ const renderSelectedMovieDetails = movie => {
   const btnRemoveFromQueue = document.querySelector('#remove-from-queue');
   const btnAddToWatched = document.querySelector('#add-to-watched');
   const btnRemoveFromWatched = document.querySelector('#remove-from-watched');
-  const queueMoviesDOM = document.querySelector('.users-queue-list');
-  const watchedMoviesDOM = document.querySelector('.users-watched-list');
-
+ 
   const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
   const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
+
   const movieToAdd = { id: movie.id, title: movie.title };
   const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
   const isDuplicateWatched = currentWatched.some(movie => movieToAdd.id === movie.id);
 
   btnAddToQueue.addEventListener('click', () => {
-    const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
-    const movieToAdd = { id: movie.id, title: movie.title };
-
-    const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
+   
     if (!isDuplicate) {
         currentQueue.push(movie);
         localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
@@ -119,8 +116,7 @@ const renderSelectedMovieDetails = movie => {
       btnRemoveFromWatched.classList.remove('d-none');
       window.location.reload();
       });
-
-    
+ 
   }
 
   if (isDuplicateWatched) {
@@ -137,14 +133,9 @@ const renderSelectedMovieDetails = movie => {
       btnAddToQueue.classList.add('d-none');
       btnRemoveFromQueue.classList.remove('d-none');
       window.location.reload();  
-     
-    
     });
 
   }
-  
-  
-
   
 };
 
