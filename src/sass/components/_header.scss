@@ -15,6 +15,11 @@
 
   &__filmoteka {
     display: none;
+
+    &:hover,
+    &:focus {
+      color: #ff6b01;
+    }
   }
 
   &__upper-area {
@@ -26,6 +31,16 @@
   }
 
   &__logo {
+    // fill: #ff6b01;
+  }
+
+  &__icon {
+    stroke: #fff;
+
+    &:hover,
+    &:focus {
+      stroke: #ff6b01;
+    }
   }
 
   &__tab-area {
@@ -41,6 +56,11 @@
 
   &__item {
     color: white;
+    &:hover,
+    &:focus {
+      color: #ff6b01;
+    }
+
     &--focus {
       position: relative;
       &::after {
@@ -51,7 +71,6 @@
         height: 3px;
         background-color: #ff001b;
         width: 100%;
-        
       }
     }
   }
@@ -126,7 +145,6 @@
     background: transparent;
     border-radius: 5px;
     cursor: pointer;
-    
 
     &:hover,
     &:focus {
@@ -141,8 +159,8 @@
   }
   &__libBtn.active-button {
     background: #ff6b01;
-      border: transparent;
-      box-shadow: 4px 4px 40px 15px #ff6b0187;
+    border: transparent;
+    box-shadow: 4px 4px 40px 15px #ff6b0187;
   }
 }
 
@@ -180,8 +198,6 @@
     &__upper-area {
       margin-bottom: 40px;
     }
-
-
 
     &__search-area {
       // padding-top: 40px;
