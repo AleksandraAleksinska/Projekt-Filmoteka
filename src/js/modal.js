@@ -1,5 +1,6 @@
-const movieCard = document.querySelector('.modal__movie');
+import defaultFilmCardImage from '../images/no-image.png'
 import Notiflix from 'notiflix';
+const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async id => {
   try {
@@ -17,8 +18,8 @@ const getSelectedMovieDetails = async id => {
 const renderSelectedMovieDetails = movie => {
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
   const backdrop = document.querySelector('.backdrop');
-  backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
-  const selectedMovie = `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
+    backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
+  const selectedMovie = `<img class="modal__img" src="${movie.poster_path ? imgUrl+movie.poster_path :defaultFilmCardImage }"></img>
         <div class="modal__wrapper">
             <h2 class="modal__title uppercase"> ${movie.title}</h2>
                 <ul class="modal__info">
@@ -51,42 +52,109 @@ const renderSelectedMovieDetails = movie => {
             <div class="modal__buttons">
                 <button id="add-to-watched" class="button button--accent">add to watched</button>
                 <button id="add-to-queue" class="button button--queue">add to queue</button>
-        </div>
+            </div>
+            <div class="modal__buttons">
+                <button id="remove-from-watched" class="button button--accent d-none">remove from watched</button>
+                <button id="remove-from-queue" class="button button--queue d-none">remove from queue</button>
+            </div>
         </div>`;
 
   movieCard.innerHTML = selectedMovie;
 
   const btnAddToQueue = document.querySelector('.button--queue');
+  const btnRemoveFromQueue = document.querySelector('#remove-from-queue');
+  const btnAddToWatched = document.querySelector('#add-to-watched');
+  const btnRemoveFromWatched = document.querySelector('#remove-from-watched');
+ 
+  const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
+  const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
+
+  const movieToAdd = { id: movie.id, title: movie.title };
+  const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
+  const isDuplicateWatched = currentWatched.some(movie => movieToAdd.id === movie.id);
 
   btnAddToQueue.addEventListener('click', () => {
-    const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
-    const movieToAdd = { id: movie.id, title: movie.title };
-
-    const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
+   
     if (!isDuplicate) {
-      Notiflix.Notify.info(`"${movie.title}"  sucesfully added to queue`);
-      currentQueue.push(movie);
-      localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
-    } else {
-      Notiflix.Notify.info(`Unable to add "${movie.title}" to queue. Your  movie is already there`);
-    }
+        currentQueue.push(movie);
+        localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+        Notiflix.Notify.info(`"${movie.title}"  sucesfully added to queue`);
+        
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        setTimeout(() => {
+        btnAddToQueue.classList.add('d-none');
+        btnRemoveFromQueue.classList.remove('d-none');
+        
+        }, 1100); 
+        
+      } 
   });
 
-  const btnAddToWatched = document.querySelector('#add-to-watched');
-
+  
   btnAddToWatched.addEventListener('click', () => {
-    const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
-    const movieToAdd = { id: movie.id, title: movie.title };
-
-    const isDuplicate = currentWatched.some(movie => movieToAdd.id === movie.id);
-    if (!isDuplicate) {
-      Notiflix.Notify.info(`"${movie.title}"  sucesfully added to watched`);
-      currentWatched.push(movie);
-      localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
-    } else {
-      Notiflix.Notify.info(`Unable to add "${movie.title}" to watched. Your  movie is already there`);
-    }
+    
+    if (!isDuplicateWatched) {
+        currentWatched.push(movie);
+        localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+        Notiflix.Notify.info(`"${movie.title}"  sucesfully added to watched`);
+        
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+        setTimeout(() => {
+          btnAddToWatched.classList.add('d-none');
+          btnRemoveFromWatched.classList.remove('d-none');
+        }, 1100)
+        
+      } 
   });
+
+  if(isDuplicate) {
+
+    btnAddToQueue.classList.add('d-none');
+    btnRemoveFromQueue.classList.remove('d-none');  
+
+    btnRemoveFromQueue.addEventListener('click', () => {
+      const index = currentQueue.findIndex(movie => movie.id === movieToAdd.id);
+      currentQueue.splice(index, 1);
+      localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+      Notiflix.Notify.info(`"${movie.title}"  sucesfully removed from queue`);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      setTimeout(() => {
+        btnRemoveFromQueue.classList.add('d-none');
+        btnAddToQueue.classList.remove('d-none');
+      }, 1100)
+       
+    });
+ 
+  }
+
+  if (isDuplicateWatched) {
+
+    btnAddToWatched.classList.add('d-none');
+    btnRemoveFromWatched.classList.remove('d-none');
+
+    btnRemoveFromWatched.addEventListener('click', () => {
+      const index = currentWatched.findIndex(movie => movie.id === movieToAdd.id);
+      currentWatched.splice(index, 1);
+      localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+      Notiflix.Notify.info(`"${movie.title}"  sucesfully removed from watched`);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      setTimeout(() => {
+        btnRemoveFromWatched.classList.add('d-none');
+        btnAddToWatched.classList.remove('d-none');
+      }, 1100)
+      
+    });
+
+  }
+  
 };
 
 const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails };
