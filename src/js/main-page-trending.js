@@ -6,6 +6,7 @@ import defaultFilmCardImage from '../images/no-image.png'
 
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
+
 const getTrendingMovies = async (page = 1) => {
   const APIkey = 'ac3e035161883f7175e5be9954a0068d';
   const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIkey}&page=${page}`;
@@ -18,9 +19,10 @@ const getTrendingMovies = async (page = 1) => {
     console.log(error.message);
   }
 };
+
 getTrendingMovies()
-  .then(movies => renderTrendingMovies(movies))
-  .catch(error => console.log(error));
+.then((movies) => renderTrendingMovies(movies))
+.catch((error) => console.log(error));
 
 const renderTrendingMovies = response => {
   const movies = response.results;

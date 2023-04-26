@@ -1,4 +1,5 @@
 import defaultFilmCardImage from '../images/no-image.png'
+import Notiflix from 'notiflix';
 const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async id => {
@@ -77,16 +78,18 @@ const renderSelectedMovieDetails = movie => {
     if (!isDuplicate) {
         currentQueue.push(movie);
         localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
-        window.location.reload();
+        Notiflix.Notify.info(`"${movie.title}"  sucesfully added to queue`);
+        
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
         setTimeout(() => {
         btnAddToQueue.classList.add('d-none');
         btnRemoveFromQueue.classList.remove('d-none');
-        }, 1000) 
         
-      } else {
-        console.log('Ten film już istnieje w liście do obejrzenia.');
-                
-      }
+        }, 1100); 
+        
+      } 
   });
 
   
@@ -95,15 +98,17 @@ const renderSelectedMovieDetails = movie => {
     if (!isDuplicateWatched) {
         currentWatched.push(movie);
         localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
-        window.location.reload();
+        Notiflix.Notify.info(`"${movie.title}"  sucesfully added to watched`);
+        
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
         setTimeout(() => {
           btnAddToWatched.classList.add('d-none');
           btnRemoveFromWatched.classList.remove('d-none');
-        }, 1000)
+        }, 1100)
         
-      } else {
-        console.log('Ten film już istnieje w liście obejrzanych.'); 
-      }
+      } 
   });
 
   if(isDuplicate) {
@@ -115,11 +120,14 @@ const renderSelectedMovieDetails = movie => {
       const index = currentQueue.findIndex(movie => movie.id === movieToAdd.id);
       currentQueue.splice(index, 1);
       localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
-      window.location.reload();
+      Notiflix.Notify.info(`"${movie.title}"  sucesfully removed from queue`);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       setTimeout(() => {
         btnRemoveFromQueue.classList.add('d-none');
         btnAddToQueue.classList.remove('d-none');
-      }, 1000)
+      }, 1100)
        
     });
  
@@ -134,11 +142,14 @@ const renderSelectedMovieDetails = movie => {
       const index = currentWatched.findIndex(movie => movie.id === movieToAdd.id);
       currentWatched.splice(index, 1);
       localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
-      window.location.reload();
+      Notiflix.Notify.info(`"${movie.title}"  sucesfully removed from watched`);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
       setTimeout(() => {
         btnRemoveFromWatched.classList.add('d-none');
-      btnAddToWatched.classList.remove('d-none');
-      }, 1000)
+        btnAddToWatched.classList.remove('d-none');
+      }, 1100)
       
     });
 
