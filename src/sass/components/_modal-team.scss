@@ -26,18 +26,23 @@
   &__modal {
     border-radius: 5px;
     padding: 30px;
-    width: 280px;
+    width: 80vw;
+    max-width: 1000px;
     background-color: $color-third;
     position: relative;
     overflow-y: auto;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
       0px 2px 1px rgba(0, 0, 0, 0.2);
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @media screen and (min-width: 768px) {
-      width: 720px;
+      // width: 720px;
       height: fit-content;
     }
     @media screen and (min-width: 1024px) {
-      width: 1000px;
+      // width: 900px;
     }
   }
   &__close {
@@ -58,5 +63,18 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+  &__member {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
   }
 }
