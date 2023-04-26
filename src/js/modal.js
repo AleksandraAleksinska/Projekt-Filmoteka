@@ -50,12 +50,17 @@ const renderSelectedMovieDetails = movie => {
             <div class="modal__buttons">
                 <button id="add-to-watched" class="button button--accent">add to watched</button>
                 <button id="add-to-queue" class="button button--queue">add to queue</button>
-        </div>
+            </div>
+            <div class="modal__buttons">
+                <button id="remove-from-watched" class="button button--accent d-none">remove from watched</button>
+                <button id="remove-from-queue" class="button button--queue d-none">remove from queue</button>
+            </div>
         </div>`;
 
   movieCard.innerHTML = selectedMovie;
 
   const btnAddToQueue = document.querySelector('.button--queue');
+  const btnRemoveFromQueue = document.querySelector('#remove-from-queue');
 
   btnAddToQueue.addEventListener('click', () => {
     const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
@@ -67,10 +72,23 @@ const renderSelectedMovieDetails = movie => {
         localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
       } else {
         console.log('Ten film już istnieje w liście do obejrzenia.');
+        btnAddToQueue.classList.add('d-none');
+        btnRemoveFromQueue.classList.remove('d-none');
+        btnRemoveFromQueue.addEventListener('click', () => {
+          console.log(currentQueue);
+          const index = currentQueue.findIndex(movie => movie.id === movieToAdd.id);
+          console.log(index)
+          currentQueue.splice(index, 1);
+          console.log(currentQueue);
+          localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+          window.location.reload();
+
+        });
       }
   });
 
   const btnAddToWatched = document.querySelector('#add-to-watched');
+  const btnRemoveFromWatched = document.querySelector('#remove-from-watched');
 
   btnAddToWatched.addEventListener('click', () => {
     const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
@@ -82,6 +100,19 @@ const renderSelectedMovieDetails = movie => {
         localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
       } else {
         console.log('Ten film już istnieje w liście obejrzanych.');
+        btnAddToWatched.classList.add('d-none');
+        btnRemoveFromWatched.classList.remove('d-none');
+        btnRemoveFromWatched.addEventListener('click', () => {
+          console.log(currentWatched);
+          const index = currentWatched.findIndex(movie => movie.id === movieToAdd.id);
+          console.log(index)
+          currentWatched.splice(index, 1);
+          console.log(currentWatched);
+          localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+          window.location.reload();
+
+        });
+        
       }
   });
 };
