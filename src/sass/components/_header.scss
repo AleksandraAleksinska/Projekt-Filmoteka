@@ -15,6 +15,11 @@
 
   &__filmoteka {
     display: none;
+
+    &:hover,
+    &:focus {
+      color: #ff6b01;
+    }
   }
 
   &__upper-area {
@@ -26,6 +31,16 @@
   }
 
   &__logo {
+    // fill: #ff6b01;
+  }
+
+  &__icon {
+    stroke: #fff;
+
+    &:hover,
+    &:focus {
+      stroke: #ff6b01;
+    }
   }
 
   &__tab-area {
@@ -43,9 +58,7 @@
     color: white;
     &:hover,
     &:focus {
-      background: #ff6b01;
-      border: transparent;
-      box-shadow: 4px 4px 40px 15px #ff6b0187;
+      color: #ff6b01;
     }
 
     &--focus {
