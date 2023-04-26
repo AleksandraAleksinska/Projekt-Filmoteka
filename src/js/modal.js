@@ -1,3 +1,4 @@
+import defaultFilmCardImage from '../images/no-image.png'
 const movieCard = document.querySelector('.modal__movie');
 
 const getSelectedMovieDetails = async id => {
@@ -17,7 +18,7 @@ const renderSelectedMovieDetails = movie => {
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
   const backdrop = document.querySelector('.backdrop');
     backdrop.style.backgroundImage = `url('${imgUrl}${movie.backdrop_path}')`;
-  const selectedMovie = `<img class="modal__img" src="${imgUrl}${movie.poster_path}"></img>
+  const selectedMovie = `<img class="modal__img" src="${movie.poster_path ? imgUrl+movie.poster_path :defaultFilmCardImage }"></img>
         <div class="modal__wrapper">
             <h2 class="modal__title uppercase"> ${movie.title}</h2>
                 <ul class="modal__info">
@@ -50,40 +51,99 @@ const renderSelectedMovieDetails = movie => {
             <div class="modal__buttons">
                 <button id="add-to-watched" class="button button--accent">add to watched</button>
                 <button id="add-to-queue" class="button button--queue">add to queue</button>
-        </div>
+            </div>
+            <div class="modal__buttons">
+                <button id="remove-from-watched" class="button button--accent d-none">remove from watched</button>
+                <button id="remove-from-queue" class="button button--queue d-none">remove from queue</button>
+            </div>
         </div>`;
 
   movieCard.innerHTML = selectedMovie;
 
   const btnAddToQueue = document.querySelector('.button--queue');
+  const btnRemoveFromQueue = document.querySelector('#remove-from-queue');
+  const btnAddToWatched = document.querySelector('#add-to-watched');
+  const btnRemoveFromWatched = document.querySelector('#remove-from-watched');
+ 
+  const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
+  const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
+
+  const movieToAdd = { id: movie.id, title: movie.title };
+  const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
+  const isDuplicateWatched = currentWatched.some(movie => movieToAdd.id === movie.id);
 
   btnAddToQueue.addEventListener('click', () => {
-    const currentQueue = JSON.parse(localStorage.getItem('queue-movie')) || [];
-    const movieToAdd = { id: movie.id, title: movie.title };
-
-    const isDuplicate = currentQueue.some(movie => movieToAdd.id === movie.id);
+   
     if (!isDuplicate) {
         currentQueue.push(movie);
         localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+        window.location.reload();
+        setTimeout(() => {
+        btnAddToQueue.classList.add('d-none');
+        btnRemoveFromQueue.classList.remove('d-none');
+        }, 1000) 
+        
       } else {
         console.log('Ten film już istnieje w liście do obejrzenia.');
+                
       }
   });
 
-  const btnAddToWatched = document.querySelector('#add-to-watched');
-
+  
   btnAddToWatched.addEventListener('click', () => {
-    const currentWatched = JSON.parse(localStorage.getItem('watched-movie')) || [];
-    const movieToAdd = { id: movie.id, title: movie.title };
-
-    const isDuplicate = currentWatched.some(movie => movieToAdd.id === movie.id);
-    if (!isDuplicate) {
+    
+    if (!isDuplicateWatched) {
         currentWatched.push(movie);
         localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+        window.location.reload();
+        setTimeout(() => {
+          btnAddToWatched.classList.add('d-none');
+          btnRemoveFromWatched.classList.remove('d-none');
+        }, 1000)
+        
       } else {
-        console.log('Ten film już istnieje w liście obejrzanych.');
+        console.log('Ten film już istnieje w liście obejrzanych.'); 
       }
   });
+
+  if(isDuplicate) {
+
+    btnAddToQueue.classList.add('d-none');
+    btnRemoveFromQueue.classList.remove('d-none');  
+
+    btnRemoveFromQueue.addEventListener('click', () => {
+      const index = currentQueue.findIndex(movie => movie.id === movieToAdd.id);
+      currentQueue.splice(index, 1);
+      localStorage.setItem('queue-movie', JSON.stringify(currentQueue));
+      window.location.reload();
+      setTimeout(() => {
+        btnRemoveFromQueue.classList.add('d-none');
+        btnAddToQueue.classList.remove('d-none');
+      }, 1000)
+       
+    });
+ 
+  }
+
+  if (isDuplicateWatched) {
+
+    btnAddToWatched.classList.add('d-none');
+    btnRemoveFromWatched.classList.remove('d-none');
+
+    btnRemoveFromWatched.addEventListener('click', () => {
+      const index = currentWatched.findIndex(movie => movie.id === movieToAdd.id);
+      currentWatched.splice(index, 1);
+      localStorage.setItem('watched-movie', JSON.stringify(currentWatched));
+      window.location.reload();
+      setTimeout(() => {
+        btnRemoveFromWatched.classList.add('d-none');
+      btnAddToWatched.classList.remove('d-none');
+      }, 1000)
+      
+    });
+
+  }
+  
 };
 
 const selectedMovie = { getSelectedMovieDetails, renderSelectedMovieDetails };
