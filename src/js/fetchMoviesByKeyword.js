@@ -1,8 +1,10 @@
-import selectedMovie from "./modal";
-import toggleModal from "./toggleModal";
+import selectedMovie from './modal';
+import toggleModal from './toggleModal';
 import Pagination from 'tui-pagination';
 import 'tui-pagination/dist/tui-pagination.css';
+import showNotResult from './show-not-result'
 import defaultFilmCardImage from '../images/no-image.png'
+
 
 const API_KEY = 'ac3e035161883f7175e5be9954a0068d';
 let keyword = '';
@@ -25,7 +27,7 @@ async function getMoviesbyKeyword(keyword,page=1) {
   
 }
 
-const handleSubmitKeyword = (e) => {
+const handleSubmitKeyword = e => {
   e.preventDefault();
   keyword = e.currentTarget.name.value.trim();
   gallery.innerHTML = '';
@@ -50,10 +52,11 @@ const handleSubmitKeyword = (e) => {
       renderMoviesList(data);
     })
     .catch(error => console.log(error.message));
-}
+};
 
 const renderMoviesList = data => {
   const IMAGE_URL = 'https://image.tmdb.org/t/p/original';
+  showNotResult.getShowNotResult(data.results.length);
   const markup = data.results
   .map(({ poster_path, title, release_date, genre_ids, id }) => {
     const releaseYear = release_date.slice(0, 4);
@@ -77,29 +80,26 @@ const renderMoviesList = data => {
         .slice(0, 3)
         .join(', ')} | ${releaseYear}</p>                     
           </div>
-      </div>
-      </li>
-      `;
-  })
+          </li>
+          `;
+    })
     .join('');
 
   gallery.insertAdjacentHTML('beforeend', markup);
 
   const movieList = document.querySelectorAll('li');
   movieList.forEach(movieListItem => {
-
-
     movieListItem.addEventListener('click', () => {
       const movieId = movieListItem.dataset.id;
       localStorage.setItem('movie-id', movieId);
       setTimeout(() => toggleModal.openModal(), 50);
 
-        
-      selectedMovie.getSelectedMovieDetails(movieId)
-        .then((movie) => selectedMovie.renderSelectedMovieDetails(movie))
-        .catch((error) => console.log(error))
-    })
-  })
+      selectedMovie
+        .getSelectedMovieDetails(movieId)
+        .then(movie => selectedMovie.renderSelectedMovieDetails(movie))
+        .catch(error => console.log(error));
+    });
+  });
 };
 
 if (form) {
