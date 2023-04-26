@@ -1,0 +1,19 @@
+.header__not-result {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  color: $warning-color;
+  text-align: center;
+  animation-name: showNotResult;
+  animation-duration: 250ms;
+}
+
+@keyframes showNotResult {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

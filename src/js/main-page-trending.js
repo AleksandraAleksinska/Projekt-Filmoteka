@@ -1,24 +1,25 @@
 import getAllGenres from './genres';
 import selectedMovie from './modal';
 import toggleModal from './toggleModal';
+import defaultFilmCardImage from '../images/no-image.png'
 
 
 const trendingMoviesDOM = document.querySelector('.movie-list');
 
 
-const getTrendingMovies = async () => {
-    const APIkey = 'ac3e035161883f7175e5be9954a0068d';
-    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIkey}`;
-    try{
-        const moviesData = await fetch(url);
-        const moviesDataJSON = await moviesData.json();
-        console.log(moviesDataJSON);
-        return moviesDataJSON;
-        
-    } catch (error) {
-        console.log(error.message)
-    }     
-}
+const getTrendingMovies = async (page = 1) => {
+  const APIkey = 'ac3e035161883f7175e5be9954a0068d';
+  const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIkey}&page=${page}`;
+
+  try {
+    const moviesData = await fetch(url);
+    const moviesDataJSON = await moviesData.json();
+    return moviesDataJSON;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 getTrendingMovies()
 .then((movies) => renderTrendingMovies(movies))
 .catch((error) => console.log(error));
@@ -26,7 +27,6 @@ getTrendingMovies()
 const renderTrendingMovies = response => {
   const movies = response.results;
   const imgUrl = 'https://image.tmdb.org/t/p/w500';
-
   const markup = movies
     .map(({ poster_path, title, release_date, genre_ids, id }) => {
       const releaseYear = release_date.slice(0, 4);
@@ -42,7 +42,7 @@ const renderTrendingMovies = response => {
       return `
         <li data-id=${id}>
         <div class="movie-card card-hover">
-            <img class="movie-card__img" src="${poster_path ? imgUrl+poster_path :'https://upload.wikimedia.org/wikipedia/commons/6/62/%22No_Image%22_placeholder.png' }" loading="lazy" 
+            <img class="movie-card__img" src="${poster_path ? imgUrl+poster_path :defaultFilmCardImage }" loading="lazy" 
             />
             <div class="movie-card__desc">
             <p class="movie-card__title">${title}</p>

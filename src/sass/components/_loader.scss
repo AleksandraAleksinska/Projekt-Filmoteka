@@ -66,7 +66,7 @@ body.loader .loader_website span {
 
 .loader_website > span > svg {
   fill: transparent;
-  stroke: #1a73e8;
+  stroke: $color-fourth;
   stroke-width: 5;
   animation: loader_dash 2s ease infinite, loader_rotate 2s linear infinite;
 }
@@ -84,7 +84,7 @@ body.loader .loader_website span {
 }
 
 .loader_website span.ios > svg {
-  fill: #1a73e8;
+  fill: $color-fourth;
   stroke-width: 0;
   animation: none;
   height: 100%;

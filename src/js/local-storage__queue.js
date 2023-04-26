@@ -4,6 +4,7 @@ const queueMoviesDOM = document.querySelector('.users-queue-list');
 const watchedMoviesDOM = document.querySelector('.users-watched-list');
 const savedMovies = localStorage.getItem('queue-movie');
 const parsedMovies = JSON.parse(savedMovies);
+import defaultFilmCardImage from '../images/no-image.png'
 
 if(queueMoviesDOM) {
 
@@ -18,7 +19,7 @@ if(!parsedMovies) {
     const markup = `
           <li data-id=${movie.id}>
           <div class="movie-card card-hover">
-              <img class="movie-card__img" src="${movie.poster_path ? imgUrl+movie.poster_path :'https://upload.wikimedia.org/wikipedia/commons/6/62/%22No_Image%22_placeholder.png' }" loading="lazy" 
+              <img class="movie-card__img" src="${movie.poster_path ? imgUrl+movie.poster_path :defaultFilmCardImage }" loading="lazy" 
               />
               <div class="movie-card__desc">
               <p class="movie-card__title">${movie.title}</p>
