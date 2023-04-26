@@ -77,7 +77,7 @@
   &__link {
     color: white;
     &--library {
-       margin-left: 39px;
+      
     }
   }
 
@@ -178,9 +178,6 @@
       background-image: url(../images/header-background/library-tablet.png);
     }
 
-    // &__wrapper {
-
-    // }
     &__filmoteka {
       display: inline;
       font-weight: 500;
@@ -189,9 +186,7 @@
       color: #ffffff;
       padding-left: 8px;
     }
-    &__input {
-       width: 336px;
-    }
+
 
     &__input-area {
       width: 336px;
@@ -201,9 +196,7 @@
       margin-bottom: 40px;
     }
 
-    &__search-area {
-       padding-top: 40px;
-    }
+  
   }
 }
 @media screen and (min-width: 1280px) {
@@ -213,9 +206,7 @@
     &--altbackground {
       background-image: url(../images/header-background/library-desktop.png);
     }
-    // &__input {
-    // }
-
+    
     &__input-area {
       width: 394px;
     }
