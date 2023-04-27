@@ -4,6 +4,7 @@
     visibility: hidden;
     pointer-events: none;
     display: none;
+    transform: scale(1.5);
   }
   &-backdrop {
     position: fixed;
